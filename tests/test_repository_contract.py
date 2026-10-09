@@ -38,3 +38,28 @@ def test_public_tree_contains_no_forbidden_payloads():
         if path.suffix.lower() in forbidden_suffixes or ".venv312" in path.parts:
             offenders.append(str(path.relative_to(ROOT)))
     assert offenders == []
+
+
+def test_pre_publication_mode_requires_current_tree_but_defers_future_publication_files():
+    result = subprocess.run(
+        ["python3", str(VERIFIER), "--pre-publication"],
+        cwd=ROOT,
+        text=True,
+        capture_output=True,
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "MODE=pre-publication" in result.stdout
+
+
+def test_repository_audit_workflow_uses_python312_and_final_verification():
+    workflow = ROOT / ".github" / "workflows" / "repository-audit.yml"
+    text = workflow.read_text()
+    assert "python-version: '3.12'" in text or 'python-version: "3.12"' in text
+    assert "make verify-final" in text
+    assert "actions/checkout@" in text
+    assert "actions/setup-python@" in text
+
+
+def test_production_shell_helpers_are_executable():
+    for path in (ROOT / "production").glob("*.sh"):
+        assert path.stat().st_mode & 0o111, f"not executable: {path.name}"

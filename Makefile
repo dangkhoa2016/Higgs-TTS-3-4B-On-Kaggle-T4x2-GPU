@@ -1,6 +1,6 @@
 PYTHON ?= python3
 
-.PHONY: test verify-json verify-shell verify-repository verify
+.PHONY: test verify-json verify-shell verify-repository verify verify-final
 
 test:
 	$(PYTHON) -m pytest -q
@@ -12,6 +12,9 @@ verify-shell:
 	bash -n production/*.sh
 
 verify-repository:
-	$(PYTHON) scripts/verify_repository.py --pre-final
+	$(PYTHON) scripts/verify_repository.py --pre-publication
 
 verify: test verify-json verify-shell verify-repository
+
+verify-final: test verify-json verify-shell
+	$(PYTHON) scripts/verify_repository.py

@@ -40,7 +40,17 @@ FINAL_REQUIRED = {
     ".github/SECURITY.md", ".github/SECURITY.vi.md",
     ".github/SUPPORT.md", ".github/SUPPORT.vi.md",
     ".github/PULL_REQUEST_TEMPLATE.md", ".github/PULL_REQUEST_TEMPLATE.vi.md",
+    ".github/ISSUE_TEMPLATE/config.yml",
+    ".github/ISSUE_TEMPLATE/bug_report.md", ".github/ISSUE_TEMPLATE/bug_report.vi.md",
+    ".github/ISSUE_TEMPLATE/feature_request.md", ".github/ISSUE_TEMPLATE/feature_request.vi.md",
+    ".github/ISSUE_TEMPLATE/documentation.md", ".github/ISSUE_TEMPLATE/documentation.vi.md",
+    ".github/ISSUE_TEMPLATE/question.md", ".github/ISSUE_TEMPLATE/question.vi.md",
     ".github/dependabot.yml", ".github/workflows/repository-audit.yml",
+}
+PUBLICATION_FUTURE = {
+    "README.md", "README.vi.md",
+    "CHANGELOG.md", "CHANGELOG.vi.md",
+    "docs/development-history.md", "docs/development-history.vi.md",
 }
 
 
@@ -76,10 +86,12 @@ def paired_markdown_errors():
     return errors
 
 
-def audit(final: bool) -> list[str]:
+def audit(mode: str) -> list[str]:
     errors = []
     required = set(BASE_REQUIRED)
-    if final:
+    if mode == "pre-publication":
+        required |= FINAL_REQUIRED - PUBLICATION_FUTURE
+    elif mode == "final":
         required |= FINAL_REQUIRED
     for rel in sorted(required):
         if not (ROOT / rel).is_file():
@@ -103,16 +115,19 @@ def audit(final: bool) -> list[str]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Audit the public repository contract")
-    parser.add_argument("--pre-final", action="store_true", help="allow docs/governance files scheduled for later tasks to be absent")
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument("--pre-final", action="store_true", help="legacy build mode: require only the base runtime/legal tree")
+    group.add_argument("--pre-publication", action="store_true", help="require the complete Task 1-16 tree while deferring only Task 17-18 publication files")
     args = parser.parse_args()
-    errors = audit(final=not args.pre_final)
+    mode = "pre-final" if args.pre_final else "pre-publication" if args.pre_publication else "final"
+    errors = audit(mode=mode)
     if errors:
         print("REPOSITORY_AUDIT=FAIL")
         for error in errors:
             print(f"- {error}")
         return 1
     print("REPOSITORY_AUDIT=PASS")
-    print(f"MODE={'pre-final' if args.pre_final else 'final'}")
+    print(f"MODE={mode}")
     return 0
 
 
