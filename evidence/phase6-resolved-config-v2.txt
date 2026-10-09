@@ -1,0 +1,210 @@
+model_path: /kaggle/input/models/dangkhoa2016/bosonai-higgs-tts-3-4b/transformers/default/1
+audio_chunking:
+  max_audio_clip_s: 30.0
+  max_total_audio_s: 3600.0
+  max_concurrent_chunks: 8
+  max_concurrent_long_audio_requests: null
+stages:
+  preprocessing:
+    factory_path: sglang_omni.models.higgs_tts.stages.create_preprocessing_executor
+    next: audio_encoder
+    terminal: false
+    route_fn: null
+    gpu: null
+    tp_size: 1
+    process: tts_frontend
+    gpu_memory_fraction: null
+    total_reserve_bytes: null
+    enforce_total_reserve: true
+    factory:
+      device: null
+      dtype: null
+      max_seq_len: null
+      video_fps: null
+      max_new_tokens: null
+      context_length: null
+      max_concurrency: 2
+      max_batch_size: null
+      max_batch_wait_ms: null
+      enable_async_decode: null
+      async_decode_min_batch_size: null
+      prefill_coalesce_requests: null
+      prefill_coalesce_wait_ms: null
+      prefill_coalesce_when_idle: null
+      prefill_coalesce_requires_pending_builds: null
+      prefill_coalesce_after_builds_during_decode: null
+      request_build_max_workers: null
+      request_build_max_pending: null
+      encoder_mem_reserve: null
+      enable_partial_start: null
+      partial_start_min_chunks: null
+    env:
+      OMP_NUM_THREADS: '2'
+    wait_for: null
+    wait_for_fn: null
+    merge_fn: null
+    stream_to: []
+    stream_done_to_fn: null
+    can_accept_stream_before_payload: false
+    disable_direct_cuda_ipc_payload: false
+    project_payload: {}
+    comm: null
+  audio_encoder:
+    factory_path: sglang_omni.models.higgs_tts.stages.create_audio_encoder_executor
+    next: tts_engine
+    terminal: false
+    route_fn: null
+    gpu: 1
+    tp_size: 1
+    process: tts_frontend
+    gpu_memory_fraction: 0.03
+    total_reserve_bytes: null
+    enforce_total_reserve: true
+    factory:
+      device: null
+      dtype: null
+      max_seq_len: null
+      video_fps: null
+      max_new_tokens: null
+      context_length: null
+      max_concurrency: null
+      max_batch_size: null
+      max_batch_wait_ms: null
+      enable_async_decode: null
+      async_decode_min_batch_size: null
+      prefill_coalesce_requests: null
+      prefill_coalesce_wait_ms: null
+      prefill_coalesce_when_idle: null
+      prefill_coalesce_requires_pending_builds: null
+      prefill_coalesce_after_builds_during_decode: null
+      request_build_max_workers: null
+      request_build_max_pending: null
+      encoder_mem_reserve: null
+      enable_partial_start: null
+      partial_start_min_chunks: null
+    env: {}
+    wait_for: null
+    wait_for_fn: null
+    merge_fn: null
+    stream_to: []
+    stream_done_to_fn: null
+    can_accept_stream_before_payload: false
+    disable_direct_cuda_ipc_payload: false
+    project_payload: {}
+    comm: null
+  tts_engine:
+    factory_path: sglang_omni.models.higgs_tts.stages.create_sglang_tts_engine_executor
+    next: vocoder
+    terminal: false
+    route_fn: null
+    gpu: 0
+    tp_size: 1
+    process: pipeline
+    gpu_memory_fraction: 0.85
+    total_reserve_bytes: null
+    enforce_total_reserve: true
+    engine:
+      mem_fraction_static: 0.72
+      max_running_requests: 1
+      max_total_tokens: null
+      cuda_graph_max_bs: null
+      disable_cuda_graph: true
+      enable_torch_compile: null
+      torch_compile_max_bs: null
+      cpu_offload_gb: null
+      quantization: null
+      disable_custom_all_reduce: null
+      kv_cache_bytes: null
+      dtype: float16
+      sampling_backend: pytorch
+      attention_backend: triton
+    factory:
+      device: null
+      dtype: null
+      max_seq_len: null
+      video_fps: null
+      max_new_tokens: 2048
+      context_length: null
+      max_concurrency: null
+      max_batch_size: null
+      max_batch_wait_ms: null
+      enable_async_decode: true
+      async_decode_min_batch_size: null
+      prefill_coalesce_requests: null
+      prefill_coalesce_wait_ms: null
+      prefill_coalesce_when_idle: null
+      prefill_coalesce_requires_pending_builds: null
+      prefill_coalesce_after_builds_during_decode: null
+      request_build_max_workers: null
+      request_build_max_pending: null
+      encoder_mem_reserve: null
+      enable_partial_start: null
+      partial_start_min_chunks: null
+    env: {}
+    wait_for: null
+    wait_for_fn: null
+    merge_fn: null
+    stream_to:
+    - vocoder
+    stream_done_to_fn: null
+    can_accept_stream_before_payload: false
+    disable_direct_cuda_ipc_payload: false
+    project_payload: {}
+    comm: null
+  vocoder:
+    factory_path: sglang_omni.models.higgs_tts.stages.create_vocoder_executor
+    next: null
+    terminal: true
+    route_fn: null
+    gpu: 1
+    tp_size: 1
+    process: vocoder
+    gpu_memory_fraction: 0.1
+    total_reserve_bytes: null
+    enforce_total_reserve: true
+    factory:
+      device: null
+      dtype: null
+      max_seq_len: null
+      video_fps: null
+      max_new_tokens: null
+      context_length: null
+      max_concurrency: null
+      max_batch_size: null
+      max_batch_wait_ms: null
+      enable_async_decode: null
+      async_decode_min_batch_size: null
+      prefill_coalesce_requests: null
+      prefill_coalesce_wait_ms: null
+      prefill_coalesce_when_idle: null
+      prefill_coalesce_requires_pending_builds: null
+      prefill_coalesce_after_builds_during_decode: null
+      request_build_max_workers: null
+      request_build_max_pending: null
+      encoder_mem_reserve: null
+      enable_partial_start: null
+      partial_start_min_chunks: null
+    env: {}
+    wait_for: null
+    wait_for_fn: null
+    merge_fn: null
+    stream_to: []
+    stream_done_to_fn: null
+    can_accept_stream_before_payload: true
+    disable_direct_cuda_ipc_payload: false
+    project_payload: {}
+    comm: null
+name: /kaggle/input/models/dangkhoa2016/bosonai-higgs-tts-3-4b/transformers/default/1
+processes: {}
+env_defaults: {}
+mps: 'off'
+weight_share: 'off'
+placement:
+  max_total_gpu_memory_fraction_per_gpu: 1.0
+  require_memory_fraction_for_colocation: true
+placement_policy: null
+endpoints:
+  base_path: /tmp/sglang_omni
+terminal_stages_fn: null
+config_cls: HiggsTtsPipelineConfig
+

@@ -1,0 +1,48 @@
+{
+  "phase": "6-t4x2-stage-placement",
+  "status": "PASS_RUNTIME_PARTIAL_PERCEPTUAL",
+  "layout": {
+    "gpu0": [
+      "tts_engine"
+    ],
+    "gpu1": [
+      "audio_encoder",
+      "vocoder"
+    ],
+    "cpu": [
+      "preprocessing"
+    ]
+  },
+  "tensor_parallel": false,
+  "idle_memory_mib": {
+    "gpu0_used": 10855,
+    "gpu0_free": 4057,
+    "gpu1_used": 3941,
+    "gpu1_free": 10971
+  },
+  "mixed_language_suite": {
+    "count": 5,
+    "pass": 5,
+    "previously_oom_case_recovered": "mix02",
+    "gpu0_peak_used_mib": 10951,
+    "note": "All five EN-VI code-switching prompts returned HTTP 200 and valid 24 kHz mono WAV files."
+  },
+  "voice_clone_regression": {
+    "http_status": 200,
+    "elapsed_s": 5.927346,
+    "duration_s": 4.88,
+    "gpu0_peak_used_mib": 10951,
+    "gpu1_peak_used_mib": 4465,
+    "sha256": "b2dff8501269be3ee624a7ac107ce5ebed7a6541cd4b1be530cb5fb00b097323"
+  },
+  "decision": "Stage placement materially improves production headroom and is the preferred T4x2 baseline before any TP=2 experiment.",
+  "perceptual_review_2026_10_08": {
+    "phase3": "PASS",
+    "english_baseline": "PASS",
+    "control_tokens": "PASS",
+    "vietnamese_baseline": "PARTIAL - VI02 loses initial Hệ",
+    "mixed_language": "PARTIAL/FAIL - MIX02 loses Hôm; MIX03 near-silent; MIX04 loses initial The",
+    "voice_clone": "INTELLIGIBLE_BUT_REFERENCE_TOO_LOW_PITCH",
+    "review_source": "human listening review"
+  }
+}

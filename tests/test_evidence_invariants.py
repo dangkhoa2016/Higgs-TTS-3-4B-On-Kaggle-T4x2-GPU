@@ -40,3 +40,22 @@ def test_production_smoke_authority():
     assert smoke["sample_rate"] == 24000
     assert smoke["channels"] == 1
     assert smoke["duration_s"] > 0
+
+
+def test_phase6_stage_placement_and_recovery():
+    phase6 = load("evidence/phase6-summary.json")
+    assert phase6["layout"]["gpu0"] == ["tts_engine"]
+    assert phase6["layout"]["gpu1"] == ["audio_encoder", "vocoder"]
+    assert phase6["layout"]["cpu"] == ["preprocessing"]
+    assert phase6["tensor_parallel"] is False
+    assert phase6["mixed_language_suite"]["count"] == 5
+    assert phase6["mixed_language_suite"]["pass"] == 5
+    assert phase6["mixed_language_suite"]["previously_oom_case_recovered"] == "mix02"
+
+
+def test_historical_perceptual_caveats_are_preserved():
+    phase4 = load("evidence/phase4-summary.json")
+    phase6 = load("evidence/phase6-summary.json")
+    assert "VI02 loses initial Hệ" in phase4["perceptual_review_2026_10_08"]["vietnamese_baseline"]
+    assert "MIX03 near-silent" in phase4["perceptual_review_2026_10_08"]["mixed_language"]
+    assert phase6["perceptual_review_2026_10_08"]["voice_clone"] == "INTELLIGIBLE_BUT_REFERENCE_TOO_LOW_PITCH"
