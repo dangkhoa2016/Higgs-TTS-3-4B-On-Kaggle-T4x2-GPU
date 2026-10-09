@@ -1,0 +1,224 @@
+{
+  "status": "PASS",
+  "requests_total": 33,
+  "requests_http200": 33,
+  "cases": 11,
+  "repetitions": 3,
+  "overall": {
+    "latency_mean_s": 6.013801341697024,
+    "latency_median_s": 5.979204637000294,
+    "latency_p95_s": 7.094261848000315,
+    "rtf_mean": 1.0878376989480307,
+    "audio_per_wall_mean": 0.9194244190678299,
+    "gpu0_peak_used_mib": 10951,
+    "gpu1_peak_used_mib": 4511,
+    "all_cases_hash_reproducible": false,
+    "aggregate_audio_s": 182.6,
+    "aggregate_wall_s": 198.4554442760018,
+    "aggregate_rtf": 1.0868315677765708
+  },
+  "case_summary": {
+    "en01": {
+      "n": 3,
+      "latency_mean_s": 5.5474168206668155,
+      "latency_median_s": 5.549448218999714,
+      "latency_min_s": 5.529131887000403,
+      "latency_max_s": 5.56367035600033,
+      "duration_mean_s": 5.08,
+      "rtf_mean": 1.092011185170633,
+      "audio_per_wall_mean": 0.9157475169065376,
+      "gpu0_peak_used_mib": 10951,
+      "gpu1_peak_used_mib": 4511,
+      "hash_reproducible": true,
+      "hashes": [
+        "d35e0713166e9b46fa27b8e28c75bcf7d58a8237df90ecb7d0f0abb9761a9db1",
+        "d35e0713166e9b46fa27b8e28c75bcf7d58a8237df90ecb7d0f0abb9761a9db1",
+        "d35e0713166e9b46fa27b8e28c75bcf7d58a8237df90ecb7d0f0abb9761a9db1"
+      ]
+    },
+    "en02": {
+      "n": 3,
+      "latency_mean_s": 6.881874750333433,
+      "latency_median_s": 6.710260777000258,
+      "latency_min_s": 6.680729850999342,
+      "latency_max_s": 7.2546336230007,
+      "duration_mean_s": 6.426666666666667,
+      "rtf_mean": 1.070949991185282,
+      "audio_per_wall_mean": 0.9337602673457032,
+      "gpu0_peak_used_mib": 10951,
+      "gpu1_peak_used_mib": 4511,
+      "hash_reproducible": false,
+      "hashes": [
+        "d222da242ff4e7d3a05037df1f36717b55dfa3baeb59244621015a94c9b3d018",
+        "7b160ce6499e602a8405626f5b61356ccd8f82cd5c375048be3cd93707bf72e9",
+        "7b160ce6499e602a8405626f5b61356ccd8f82cd5c375048be3cd93707bf72e9"
+      ]
+    },
+    "en03": {
+      "n": 3,
+      "latency_mean_s": 6.222988313999849,
+      "latency_median_s": 6.2157764539997515,
+      "latency_min_s": 6.179275624000184,
+      "latency_max_s": 6.2739128639996125,
+      "duration_mean_s": 5.76,
+      "rtf_mean": 1.0803799156249738,
+      "audio_per_wall_mean": 0.9256365639172863,
+      "gpu0_peak_used_mib": 10951,
+      "gpu1_peak_used_mib": 4511,
+      "hash_reproducible": true,
+      "hashes": [
+        "824086fa623853191885dea28a8d0a1d39a99aca2ab1dfa5965435757a3ff9e8",
+        "824086fa623853191885dea28a8d0a1d39a99aca2ab1dfa5965435757a3ff9e8",
+        "824086fa623853191885dea28a8d0a1d39a99aca2ab1dfa5965435757a3ff9e8"
+      ]
+    },
+    "vi01": {
+      "n": 3,
+      "latency_mean_s": 5.96053042099993,
+      "latency_median_s": 5.979204637000294,
+      "latency_min_s": 5.912436229999912,
+      "latency_max_s": 5.9899503959995855,
+      "duration_mean_s": 5.48,
+      "rtf_mean": 1.0876880330291843,
+      "audio_per_wall_mean": 0.9194118077369017,
+      "gpu0_peak_used_mib": 10951,
+      "gpu1_peak_used_mib": 4511,
+      "hash_reproducible": true,
+      "hashes": [
+        "624c3e8f65b9fdb7713e496cb0308a8049ab711159e029a39562c1df0ab7573e",
+        "624c3e8f65b9fdb7713e496cb0308a8049ab711159e029a39562c1df0ab7573e",
+        "624c3e8f65b9fdb7713e496cb0308a8049ab711159e029a39562c1df0ab7573e"
+      ]
+    },
+    "vi02": {
+      "n": 3,
+      "latency_mean_s": 5.965482966000006,
+      "latency_median_s": 5.974975174000065,
+      "latency_min_s": 5.882908685000075,
+      "latency_max_s": 6.038565038999877,
+      "duration_mean_s": 5.52,
+      "rtf_mean": 1.0807034358695664,
+      "audio_per_wall_mean": 0.9254296739158466,
+      "gpu0_peak_used_mib": 10951,
+      "gpu1_peak_used_mib": 4511,
+      "hash_reproducible": true,
+      "hashes": [
+        "3d58879acfd747a4f19e725ff00731f7145b8fe99ada9c04685aee22e0bb60cc",
+        "3d58879acfd747a4f19e725ff00731f7145b8fe99ada9c04685aee22e0bb60cc",
+        "3d58879acfd747a4f19e725ff00731f7145b8fe99ada9c04685aee22e0bb60cc"
+      ]
+    },
+    "vi03": {
+      "n": 3,
+      "latency_mean_s": 4.916863673000383,
+      "latency_median_s": 4.918247565000456,
+      "latency_min_s": 4.868028869000227,
+      "latency_max_s": 4.964314585000466,
+      "duration_mean_s": 4.44,
+      "rtf_mean": 1.1074017281532393,
+      "audio_per_wall_mean": 0.9030724454590788,
+      "gpu0_peak_used_mib": 10951,
+      "gpu1_peak_used_mib": 4511,
+      "hash_reproducible": true,
+      "hashes": [
+        "59c134ce93384a7f4cd996d85a69c20b4461e677fef83d990c05dc959125f3fc",
+        "59c134ce93384a7f4cd996d85a69c20b4461e677fef83d990c05dc959125f3fc",
+        "59c134ce93384a7f4cd996d85a69c20b4461e677fef83d990c05dc959125f3fc"
+      ]
+    },
+    "mix01": {
+      "n": 3,
+      "latency_mean_s": 5.72382905233341,
+      "latency_median_s": 5.695243492999907,
+      "latency_min_s": 5.648516250000284,
+      "latency_max_s": 5.827727414000037,
+      "duration_mean_s": 5.2,
+      "rtf_mean": 1.1007363562179633,
+      "audio_per_wall_mean": 0.9086414749751249,
+      "gpu0_peak_used_mib": 10951,
+      "gpu1_peak_used_mib": 4511,
+      "hash_reproducible": true,
+      "hashes": [
+        "b037e0d1a6603c0472df008fd08f8bbf8b49645cdfcd090a41ba0608d93fb301",
+        "b037e0d1a6603c0472df008fd08f8bbf8b49645cdfcd090a41ba0608d93fb301",
+        "b037e0d1a6603c0472df008fd08f8bbf8b49645cdfcd090a41ba0608d93fb301"
+      ]
+    },
+    "mix02": {
+      "n": 3,
+      "latency_mean_s": 7.083504111333544,
+      "latency_median_s": 7.094261848000315,
+      "latency_min_s": 7.053861205999965,
+      "latency_max_s": 7.102389280000352,
+      "duration_mean_s": 6.56,
+      "rtf_mean": 1.0798024559959671,
+      "audio_per_wall_mean": 0.926103647120849,
+      "gpu0_peak_used_mib": 10951,
+      "gpu1_peak_used_mib": 4511,
+      "hash_reproducible": true,
+      "hashes": [
+        "4453a67f46a3c10d5507e01acb81fda2e79afd6fd5307db28d6e092af9549cf0",
+        "4453a67f46a3c10d5507e01acb81fda2e79afd6fd5307db28d6e092af9549cf0",
+        "4453a67f46a3c10d5507e01acb81fda2e79afd6fd5307db28d6e092af9549cf0"
+      ]
+    },
+    "mix03": {
+      "n": 3,
+      "latency_mean_s": 6.028856326999933,
+      "latency_median_s": 6.0171274199992695,
+      "latency_min_s": 5.908176298000399,
+      "latency_max_s": 6.161265263000132,
+      "duration_mean_s": 5.6,
+      "rtf_mean": 1.0765814869642738,
+      "audio_per_wall_mean": 0.9291399621770523,
+      "gpu0_peak_used_mib": 10951,
+      "gpu1_peak_used_mib": 4511,
+      "hash_reproducible": true,
+      "hashes": [
+        "c4c18c1be0b769b0c1989f108d1ab420398cf8e5d3bc1a3555603fea4cb5e188",
+        "c4c18c1be0b769b0c1989f108d1ab420398cf8e5d3bc1a3555603fea4cb5e188",
+        "c4c18c1be0b769b0c1989f108d1ab420398cf8e5d3bc1a3555603fea4cb5e188"
+      ]
+    },
+    "mix04": {
+      "n": 3,
+      "latency_mean_s": 6.359403135666677,
+      "latency_median_s": 6.34287791099996,
+      "latency_min_s": 6.2992859429996315,
+      "latency_max_s": 6.43604555300044,
+      "duration_mean_s": 5.84,
+      "rtf_mean": 1.0889388930936093,
+      "audio_per_wall_mean": 0.9183987957497743,
+      "gpu0_peak_used_mib": 10951,
+      "gpu1_peak_used_mib": 4511,
+      "hash_reproducible": true,
+      "hashes": [
+        "709a32776d48c981f56a70c1a69924a45bad35bf274805151d4f904b20db3659",
+        "709a32776d48c981f56a70c1a69924a45bad35bf274805151d4f904b20db3659",
+        "709a32776d48c981f56a70c1a69924a45bad35bf274805151d4f904b20db3659"
+      ]
+    },
+    "mix05": {
+      "n": 3,
+      "latency_mean_s": 5.461065187333285,
+      "latency_median_s": 5.434726968999712,
+      "latency_min_s": 5.416092629000559,
+      "latency_max_s": 5.532375963999584,
+      "duration_mean_s": 4.96,
+      "rtf_mean": 1.1010212071236463,
+      "audio_per_wall_mean": 0.9083264544419742,
+      "gpu0_peak_used_mib": 10951,
+      "gpu1_peak_used_mib": 4511,
+      "hash_reproducible": true,
+      "hashes": [
+        "cee23f86862b3e314150958cfd46ab7e1c2a81beae2c027c37e8c180437cd416",
+        "cee23f86862b3e314150958cfd46ab7e1c2a81beae2c027c37e8c180437cd416",
+        "cee23f86862b3e314150958cfd46ab7e1c2a81beae2c027c37e8c180437cd416"
+      ]
+    }
+  },
+  "notes": [
+    "MIX04 benchmark generation uses canonical seed=12346,temp=0.65. Loudness normalization is excluded from model-generation latency and measured separately.",
+    "Other cases use fixed seed=12345,temp=0.8,top_k=50 for deterministic benchmark comparability."
+  ]
+}
