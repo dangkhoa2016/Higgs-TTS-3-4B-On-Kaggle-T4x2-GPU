@@ -1,0 +1,40 @@
+{
+  "status": "PARTIAL_PERCEPTUAL_REVIEW",
+  "runtime_transport_status": "PASS_RUNTIME_TRANSPORT",
+  "language_samples": 6,
+  "language_pass": 6,
+  "language_elapsed_s": {
+    "min": 4.879219,
+    "max": 7.375908,
+    "mean": 6.284972
+  },
+  "control_clone_samples": 6,
+  "control_clone_pass": 6,
+  "voice_clone": {
+    "id": "clone_en",
+    "http_status": "200",
+    "elapsed_s": 5.123085,
+    "duration_s": 3.08,
+    "sample_rate_hz": 24000,
+    "channels": 1,
+    "sha256": "8ac30a660716fb1c6ae6a8c00c3e4c0c6575ff99aea4d9c1568ef4b3b6c6b195"
+  },
+  "gpu1_used": false,
+  "perceptual_review": {
+    "reviewer": "project owner",
+    "review_method": "manual listening through the single-T4 functional review dashboard",
+    "result": "PASS",
+    "review_note": "Reviewer reported the samples were very impressive, with accurate Vietnamese and English pronunciation and strong mixed-language/code-switching behavior.",
+    "scope_note": "This records the human review outcome for the samples listened to before the formal T4x2 mixed-language suite was generated. The new T4x2 mixed samples remain separately reviewable."
+  },
+  "perceptual_review_2026_10_08": {
+    "english_baseline": "PASS",
+    "control_tokens": "PASS",
+    "vietnamese_baseline": "PARTIAL - VI02 loses initial Hệ",
+    "mixed_language": "PARTIAL/FAIL - MIX02 loses Hôm; MIX03 near-silent; MIX04 loses initial The",
+    "voice_clone": "INTELLIGIBLE_BUT_REFERENCE_TOO_LOW_PITCH",
+    "review_source": "human listening review",
+    "single_t4_first_tts": "PASS"
+  },
+  "validation_scope": "4-functional-validation-core"
+}
