@@ -1,0 +1,127 @@
+{
+  "benchmark": "Higgs TTS 3 4B — Kaggle T4x2 official warm benchmark",
+  "date": "2026-10-09",
+  "status": "PASS",
+  "runtime_layout": {
+    "gpu0": "tts_engine",
+    "gpu1": [
+      "audio_encoder",
+      "vocoder"
+    ],
+    "cpu": "preprocessing",
+    "tensor_parallel": false
+  },
+  "requests": {
+    "cases": 11,
+    "repetitions": 3,
+    "total": 33,
+    "http200": 33
+  },
+  "sampling": {
+    "default": {
+      "seed": 12345,
+      "temperature": 0.8,
+      "top_k": 50,
+      "max_new_tokens": 384
+    },
+    "mix04": {
+      "seed": 12346,
+      "temperature": 0.65,
+      "top_k": 50,
+      "max_new_tokens": 384
+    }
+  },
+  "performance": {
+    "latency_mean_s": 6.013801341697024,
+    "latency_median_s": 5.979204637000294,
+    "latency_p95_s": 7.094261848000315,
+    "rtf_mean": 1.0878376989480307,
+    "audio_per_wall_mean": 0.9194244190678299,
+    "gpu0_peak_used_mib": 10951,
+    "gpu1_peak_used_mib": 4511,
+    "all_cases_hash_reproducible": false,
+    "aggregate_audio_s": 182.6,
+    "aggregate_wall_s": 198.4554442760018,
+    "aggregate_rtf": 1.0868315677765708
+  },
+  "reproducibility": {
+    "strict_3x_bitwise": {
+      "stable_cases": [
+        "en01",
+        "en03",
+        "vi01",
+        "vi02",
+        "vi03",
+        "mix01",
+        "mix02",
+        "mix03",
+        "mix04",
+        "mix05"
+      ],
+      "stable_count": 10,
+      "total_cases": 11,
+      "all_stable": false
+    },
+    "en02": {
+      "initial_3x_hashes": [
+        "d222da242ff4e7d3a05037df1f36717b55dfa3baeb59244621015a94c9b3d018",
+        "7b160ce6499e602a8405626f5b61356ccd8f82cd5c375048be3cd93707bf72e9",
+        "7b160ce6499e602a8405626f5b61356ccd8f82cd5c375048be3cd93707bf72e9"
+      ],
+      "initial_3x_durations_s": [
+        6.8,
+        6.24,
+        6.24
+      ],
+      "extra_repetitions": [
+        {
+          "rep": 4,
+          "http_status": 200,
+          "wall_s": 6.637982175000616,
+          "duration_s": 6.24,
+          "rtf": 1.063779194711637,
+          "sha256": "7b160ce6499e602a8405626f5b61356ccd8f82cd5c375048be3cd93707bf72e9"
+        },
+        {
+          "rep": 5,
+          "http_status": 200,
+          "wall_s": 6.676367901000049,
+          "duration_s": 6.24,
+          "rtf": 1.0699307533653923,
+          "sha256": "7b160ce6499e602a8405626f5b61356ccd8f82cd5c375048be3cd93707bf72e9"
+        }
+      ],
+      "finding": "rep1 diverged; reps2-5 were byte-identical and all 6.24 s",
+      "classification": "FIRST_OBSERVATION_DIVERGENCE_THEN_4X_BITWISE_STABLE",
+      "cause": "unproven"
+    }
+  },
+  "mix04_postprocess": {
+    "loudnorm": "I=-16:TP=-1.5:LRA=7",
+    "benchmark": {
+      "n": 5,
+      "mean_s": 0.3156600840002284,
+      "median_s": 0.3150797970001804,
+      "min_s": 0.3120414280001569,
+      "max_s": 0.3197919370004456,
+      "source": "mix04-r3.wav"
+    },
+    "included_in_model_latency": false
+  },
+  "cold_start_policy": "FlashInfer cold JIT excluded from warm benchmark; cold-JIT behavior and preserved cache are documented separately.",
+  "evidence": [
+    "benchmarks/t4x2-official-2026-10-09/benchmark-meta.json",
+    "benchmarks/t4x2-official-2026-10-09/results.json",
+    "benchmarks/t4x2-official-2026-10-09/summary.json",
+    "benchmarks/t4x2-official-2026-10-09/en02-extra-repro.json",
+    "benchmarks/t4x2-official-2026-10-09/postprocess-summary.json",
+    "logs/t4x2-official-benchmark-2026-10-09.log"
+  ],
+  "verdict": {
+    "warm_runtime": "PASS",
+    "memory_headroom": "PASS_FOR_STAGE_PLACEMENT_BASELINE",
+    "performance_reproducibility": "PASS_STABLE_LATENCY_RTF",
+    "bitwise_reproducibility": "PASS_10_OF_11_IMMEDIATE; EN02_STABLE_AFTER_FIRST_OBSERVATION",
+    "production_benchmark_baseline": "ACCEPTED"
+  }
+}

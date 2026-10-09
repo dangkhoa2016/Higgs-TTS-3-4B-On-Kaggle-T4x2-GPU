@@ -78,3 +78,30 @@ def test_mix04_final_acceptance_and_reference_conditioning_policy():
     assert review["overall"]["reference_conditioned"] == "CONTENT_ACCEPTABLE_BUT_ACCENT_NOT_PRODUCTION_READY"
     assert matrix["readiness"]["reference_conditioned_default"] == "REJECTED_FOR_PRODUCTION_WITH_CURRENT_SLT_REFERENCE"
     assert matrix["readiness"]["voice_clone_production_claim"] == "PENDING_HUMAN_ACCEPTANCE"
+
+
+def test_official_warm_benchmark_authority():
+    bench = load("evidence/t4x2-official-benchmark-2026-10-09.json")
+    assert bench["requests"] == {"cases": 11, "repetitions": 3, "total": 33, "http200": 33}
+    perf = bench["performance"]
+    assert perf["latency_mean_s"] == 6.013801341697024
+    assert perf["aggregate_rtf"] == 1.0868315677765708
+    assert perf["gpu0_peak_used_mib"] == 10951
+    assert perf["gpu1_peak_used_mib"] == 4511
+    strict = bench["reproducibility"]["strict_3x_bitwise"]
+    assert strict["stable_count"] == 10
+    assert strict["total_cases"] == 11
+    en02 = bench["reproducibility"]["en02"]
+    assert en02["classification"] == "FIRST_OBSERVATION_DIVERGENCE_THEN_4X_BITWISE_STABLE"
+    assert en02["cause"] == "unproven"
+
+
+def test_raw_results_are_omitted_but_provenance_is_exact():
+    provenance = load("benchmarks/t4x2-official-2026-10-09/RAW-RESULTS-PROVENANCE.json")
+    assert provenance["sha256"] == "33be6bb0f6e11aefcaa3ce2d1d1a5d44546e48c43636c32918f4614c2914fae2"
+    assert provenance["bytes"] == 313295
+    assert provenance["line_count"] == 15339
+    assert provenance["newline_count"] == 15338
+    assert provenance["ends_with_newline"] is False
+    assert provenance["committed_to_git"] is False
+    assert not (ROOT / "benchmarks/t4x2-official-2026-10-09/results.json").exists()

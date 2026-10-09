@@ -1,0 +1,35 @@
+{
+  "started_at_epoch": 1791509129.6525626,
+  "health": {
+    "status": "healthy",
+    "running": true,
+    "stages": [
+      "preprocessing",
+      "audio_encoder",
+      "tts_engine",
+      "vocoder"
+    ],
+    "entry_stage": "preprocessing",
+    "total_requests": 0,
+    "pending_completions": 0,
+    "request_states": {}
+  },
+  "gpu_idle_before": [
+    {
+      "gpu": 0,
+      "used_mib": 10951,
+      "free_mib": 3961,
+      "util_pct": 0
+    },
+    {
+      "gpu": 1,
+      "used_mib": 4511,
+      "free_mib": 10401,
+      "util_pct": 0
+    }
+  ],
+  "repetitions": 3,
+  "sampling_interval_s": 0.2,
+  "profile": "T4x2 stage placement; GPU0 tts_engine; GPU1 audio_encoder+vocoder; sequential; fixed seed per case",
+  "cold_start_policy": "Cold FlashInfer JIT excluded from warm benchmark; preserved separately in prior evidence."
+}

@@ -1,0 +1,15 @@
+{
+  "artifact": "results.json",
+  "authority_path": "/kaggle/working/higgs-tts-3-t4x2/benchmarks/t4x2-official-2026-10-09/results.json",
+  "sha256": "33be6bb0f6e11aefcaa3ce2d1d1a5d44546e48c43636c32918f4614c2914fae2",
+  "bytes": 313295,
+  "line_count": 15339,
+  "newline_count": 15338,
+  "ends_with_newline": false,
+  "committed_to_git": false,
+  "omission_reason": "bulk raw per-request telemetry; retained outside Git source tree",
+  "public_claim_authority": [
+    "evidence/t4x2-official-benchmark-2026-10-09.json",
+    "benchmarks/t4x2-official-2026-10-09/summary.json"
+  ]
+}
