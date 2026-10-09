@@ -1,0 +1,20 @@
+{
+  "case": "MIX04",
+  "status": "HUMAN_APPROVED",
+  "variant": "fixed-seed zero-shot + loudness normalization",
+  "seed": 12346,
+  "temperature": 0.65,
+  "top_k": 50,
+  "max_new_tokens": 384,
+  "postprocess": {
+    "filter": "loudnorm",
+    "integrated_lufs_target": -16,
+    "true_peak_dbfs_target": -1.5,
+    "lra_target": 7
+  },
+  "human_review": "Approved: sufficiently loud, clear, and acceptable; temp 0.65 is enough.",
+  "duration_s": 5.84,
+  "sample_rate": 24000,
+  "sha256": "5b97e250421eb1869c66570609be3e3094a95bf7c4c774b37aec9a40c8a7e8f9",
+  "canonical_path": "/kaggle/working/higgs-tts-3-t4x2/outputs/accepted/mix04-final-approved.wav"
+}

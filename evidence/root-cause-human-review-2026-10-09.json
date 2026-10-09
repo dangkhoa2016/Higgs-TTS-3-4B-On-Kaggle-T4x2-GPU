@@ -1,0 +1,77 @@
+{
+  "review_date": "2026-10-09",
+  "reviewer": "project owner",
+  "review_scope": "A/B/C root-cause listening review",
+  "overall": {
+    "fixed_seed_zero_shot": "ACCEPTABLE_WITH_ONE_MIX04_PAUSE_ISSUE",
+    "reference_conditioned": "CONTENT_ACCEPTABLE_BUT_ACCENT_NOT_PRODUCTION_READY",
+    "mix04": "PASS_HUMAN_APPROVED_TEMP0.65_SEED12346_NORMALIZED"
+  },
+  "findings": [
+    {
+      "case": "MIX04",
+      "variant": "fixed-seed zero-shot",
+      "status": "CONTENT_CORRECT_PAUSE_TOO_LONG",
+      "observation": "The phrase 'The system is ready.' is spoken correctly, followed by an abnormally long pause of about five seconds before the rest of the sentence continues."
+    },
+    {
+      "case": "ALL_REVIEWED_CASES",
+      "variant": "reference-conditioned",
+      "status": "CONTENT_ACCEPTABLE_ACCENT_REJECTED_FOR_PRODUCTION",
+      "observation": "Speech content is understandable and generally good, but the synthetic SLT reference imparts a Central-Vietnamese-like accent / tone-mark realization that makes Vietnamese harder to understand."
+    }
+  ],
+  "production_implications": [
+    "Do not use the current SLT-conditioned voice as the default production voice.",
+    "Keep current reference-conditioned outputs as diagnostic evidence that acoustic conditioning stabilizes onset behavior.",
+    "Prefer fixed-seed zero-shot as the current production candidate, subject to resolving the MIX04 long-pause issue.",
+    "If reference conditioning is retained as a fallback, replace the current SLT reference with a clearer neutral or Southern-Vietnamese synthetic reference and re-run perceptual validation."
+  ],
+  "mix04_seed_sweep": {
+    "settings": {
+      "text": "unchanged",
+      "temperature": 0.8,
+      "top_k": 50,
+      "max_new_tokens": 384
+    },
+    "results": [
+      {
+        "seed": 12344,
+        "longest_internal_silence_s": 0.9
+      },
+      {
+        "seed": 12346,
+        "longest_internal_silence_s": 0.6
+      },
+      {
+        "seed": 12347,
+        "longest_internal_silence_s": 0.34,
+        "status": "CURRENT_CANDIDATE_PENDING_HUMAN_LISTENING"
+      },
+      {
+        "seed": 12348,
+        "longest_internal_silence_s": 0.44
+      }
+    ]
+  },
+  "mix04_final_acceptance": {
+    "case": "MIX04",
+    "status": "HUMAN_APPROVED",
+    "variant": "fixed-seed zero-shot + loudness normalization",
+    "seed": 12346,
+    "temperature": 0.65,
+    "top_k": 50,
+    "max_new_tokens": 384,
+    "postprocess": {
+      "filter": "loudnorm",
+      "integrated_lufs_target": -16,
+      "true_peak_dbfs_target": -1.5,
+      "lra_target": 7
+    },
+    "human_review": "Approved: sufficiently loud, clear, and acceptable; temp 0.65 is enough.",
+    "duration_s": 5.84,
+    "sample_rate": 24000,
+    "sha256": "5b97e250421eb1869c66570609be3e3094a95bf7c4c774b37aec9a40c8a7e8f9",
+    "canonical_path": "/kaggle/working/higgs-tts-3-t4x2/outputs/accepted/mix04-final-approved.wav"
+  }
+}

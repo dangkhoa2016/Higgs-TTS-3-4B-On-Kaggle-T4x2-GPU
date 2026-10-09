@@ -1,0 +1,306 @@
+{
+  "date": "2026-10-09",
+  "authority": "consolidated acceptance record; historical functional, headroom, and T4x2 placement evidence is preserved",
+  "supersedes_for_current_perceptual_status": [
+    "evidence/functional-language-control-validation.json perceptual status",
+    "evidence/t4x2-stage-placement-validation.json perceptual status"
+  ],
+  "does_not_overwrite_historical_failures": true,
+  "production_target": "Kaggle T4x2 stage-placement baseline, original weights, FP16 runtime",
+  "cases": [
+    {
+      "id": "EN01-EN03",
+      "category": "English zero-shot",
+      "status": "PASS_HUMAN",
+      "production_path": "functional-validation originals",
+      "files": [
+        "en01.wav",
+        "en02.wav",
+        "en03.wav"
+      ],
+      "artifacts": [
+        {
+          "file": "en01.wav",
+          "sha256": "8e6810b1c01d839b8d846b10b4a3164425ba300138fb92f07997ef329777eb74",
+          "duration_s": 5.72
+        },
+        {
+          "file": "en02.wav",
+          "sha256": "c63b7ef9d12152b988257d9d6a0e967f2c72ba3212ee47be9068e010727ca7b8",
+          "duration_s": 5.64
+        },
+        {
+          "file": "en03.wav",
+          "sha256": "0c94ae8b92510ef83bd88d86c76b84f2c7aea1144c364f3a74f6979d019766fc",
+          "duration_s": 5.0
+        }
+      ]
+    },
+    {
+      "id": "VI01",
+      "category": "Vietnamese zero-shot",
+      "status": "PASS_HUMAN",
+      "production_path": "functional-validation original",
+      "files": [
+        "vi01.wav"
+      ],
+      "artifacts": [
+        {
+          "file": "vi01.wav",
+          "sha256": "b0a8645b6fd69832bdbf5913d3acc1c4db1767c529917166744ba5c7dbb8dbbe",
+          "duration_s": 5.08
+        }
+      ]
+    },
+    {
+      "id": "VI02",
+      "category": "Vietnamese zero-shot",
+      "status": "PASS_HUMAN",
+      "production_path": "fixed-seed zero-shot",
+      "settings": {
+        "seed": 12345,
+        "temperature": 0.8,
+        "top_k": 50,
+        "max_new_tokens": 384
+      },
+      "files": [
+        "vi02-fixed-seed.wav"
+      ],
+      "historical_failure": "original unseeded sample lost initial Hệ",
+      "artifacts": [
+        {
+          "file": "vi02-fixed-seed.wav",
+          "sha256": "3d58879acfd747a4f19e725ff00731f7145b8fe99ada9c04685aee22e0bb60cc",
+          "duration_s": 5.52
+        }
+      ]
+    },
+    {
+      "id": "VI03",
+      "category": "Vietnamese zero-shot",
+      "status": "PASS_HUMAN",
+      "production_path": "functional-validation original",
+      "files": [
+        "vi03.wav"
+      ],
+      "artifacts": [
+        {
+          "file": "vi03.wav",
+          "sha256": "0bdc1df5a886cbcd1b2a0f072508e0e44d45e2d56d1b4f0376cf61ea1bed070d",
+          "duration_s": 3.96
+        }
+      ]
+    },
+    {
+      "id": "MIX01",
+      "category": "EN-VI code-switching",
+      "status": "PASS_PRIOR_HUMAN_REVIEW_NO_ISSUE_REPORTED",
+      "production_path": "T4x2 stage-placement original",
+      "files": [
+        "mix01.wav"
+      ],
+      "artifacts": [
+        {
+          "file": "mix01.wav",
+          "sha256": "586e883079d3c4b72537c36f0fc7e363e786a2ab5dcc39d7dbd52c243ca8e7c6",
+          "duration_s": 4.68
+        }
+      ]
+    },
+    {
+      "id": "MIX02",
+      "category": "EN-VI code-switching",
+      "status": "PASS_HUMAN",
+      "production_path": "fixed-seed zero-shot",
+      "settings": {
+        "seed": 12345,
+        "temperature": 0.8,
+        "top_k": 50,
+        "max_new_tokens": 384
+      },
+      "files": [
+        "mix02-fixed-seed.wav"
+      ],
+      "historical_failure": "original sample lost initial Hôm",
+      "artifacts": [
+        {
+          "file": "mix02-fixed-seed.wav",
+          "sha256": "4453a67f46a3c10d5507e01acb81fda2e79afd6fd5307db28d6e092af9549cf0",
+          "duration_s": 6.56
+        }
+      ]
+    },
+    {
+      "id": "MIX03",
+      "category": "EN-VI code-switching",
+      "status": "PASS_HUMAN",
+      "production_path": "fixed-seed zero-shot",
+      "settings": {
+        "seed": 12345,
+        "temperature": 0.8,
+        "top_k": 50,
+        "max_new_tokens": 384
+      },
+      "files": [
+        "mix03-fixed-seed.wav"
+      ],
+      "historical_failure": "original sample was near-silent",
+      "artifacts": [
+        {
+          "file": "mix03-fixed-seed.wav",
+          "sha256": "c4c18c1be0b769b0c1989f108d1ab420398cf8e5d3bc1a3555603fea4cb5e188",
+          "duration_s": 5.6
+        }
+      ]
+    },
+    {
+      "id": "MIX04",
+      "category": "EN-VI code-switching",
+      "status": "PASS_HUMAN_APPROVED_FINAL",
+      "production_path": "fixed-seed zero-shot + loudness normalization",
+      "settings": {
+        "seed": 12346,
+        "temperature": 0.65,
+        "top_k": 50,
+        "max_new_tokens": 384,
+        "loudnorm": "I=-16:TP=-1.5:LRA=7"
+      },
+      "files": [
+        "mix04-final-approved.wav"
+      ],
+      "historical_failure": "original lost The; seed12345 fixed content but introduced a long pause",
+      "artifacts": [
+        {
+          "file": "mix04-final-approved.wav",
+          "sha256": "5b97e250421eb1869c66570609be3e3094a95bf7c4c774b37aec9a40c8a7e8f9",
+          "duration_s": 5.84
+        }
+      ]
+    },
+    {
+      "id": "MIX05",
+      "category": "EN-VI code-switching",
+      "status": "PASS_PRIOR_HUMAN_REVIEW_NO_ISSUE_REPORTED",
+      "production_path": "T4x2 stage-placement original",
+      "files": [
+        "mix05.wav"
+      ],
+      "artifacts": [
+        {
+          "file": "mix05.wav",
+          "sha256": "bc7ba46c91ccb972cd29ea54a3e55087170e2e44f409ccfc1549f19228e72d98",
+          "duration_s": 4.28
+        }
+      ]
+    },
+    {
+      "id": "CONTROL_SET",
+      "category": "emotion/style/prosody/pause/SFX",
+      "status": "PASS_HUMAN",
+      "production_path": "functional-validation originals",
+      "files": [
+        "control-emotion.wav",
+        "control-style_whisper.wav",
+        "control-prosody_slow.wav",
+        "control-pause.wav",
+        "control-sfx_laughter.wav"
+      ],
+      "artifacts": [
+        {
+          "file": "control-emotion.wav",
+          "sha256": "a97dc5305772062441f7fbb5dcdaac2458609f449ecea7c2f8c2ebec19b7da39",
+          "duration_s": 5.2
+        },
+        {
+          "file": "control-style_whisper.wav",
+          "sha256": "32b776595025f970fcaab21ecaa8ab73b8ab6106baee83344e487172145a4d1a",
+          "duration_s": 3.24
+        },
+        {
+          "file": "control-prosody_slow.wav",
+          "sha256": "186a5e7542ce47e75a6a688dcc4f35c4a7da2a1d682f8331a658ae984d78146c",
+          "duration_s": 3.04
+        },
+        {
+          "file": "control-pause.wav",
+          "sha256": "396fc19d3c7cac12375b20ce572ff37ad83c197a2f94c898c6fe96375fb708c6",
+          "duration_s": 3.56
+        },
+        {
+          "file": "control-sfx_laughter.wav",
+          "sha256": "d96fa7f56d9206a1a6c7ad973720239becd2362ee4acabd510522ee44812f3bb",
+          "duration_s": 3.8
+        }
+      ]
+    },
+    {
+      "id": "VOICE_CLONE",
+      "category": "synthetic-reference voice clone",
+      "status": "PARTIAL_PERCEPTUAL",
+      "blocking_for_zero_shot_benchmark": false,
+      "blocking_for_voice_clone_production_claim": true,
+      "reason": "transport/runtime PASS; original KAL clone intelligible but too low-pitch/heavy; higher-pitch SLT clone exists but has not received explicit final human acceptance"
+    },
+    {
+      "id": "REFERENCE_CONDITIONED_DIAGNOSTIC",
+      "category": "root-cause diagnostic",
+      "status": "DIAGNOSTIC_ONLY_NOT_PRODUCTION",
+      "blocking": false,
+      "reason": "content acceptable, but SLT-conditioned Vietnamese/mixed speech has undesired regional-accent/tone realization"
+    }
+  ],
+  "readiness": {
+    "zero_shot_t4x2_benchmark": "READY",
+    "core_tts_production_packaging": "READY",
+    "voice_clone_production_claim": "PENDING_HUMAN_ACCEPTANCE",
+    "reference_conditioned_default": "REJECTED_FOR_PRODUCTION_WITH_CURRENT_SLT_REFERENCE",
+    "latest_reviewer_showcase": "HUMAN_ACCEPTED_OFFICIAL_PROJECT_OWNER_ACCOUNT_RUN",
+    "official_kaggle_account_machine_acceptance": "READY",
+    "official_kaggle_account_perceptual_acceptance": "PASS_HUMAN_REVIEWED"
+  },
+  "remaining_true_non_pass": [
+    "VOICE_CLONE perceptual acceptance only"
+  ],
+  "accepted_manifest": "outputs/accepted/MANIFEST.json",
+  "accepted_sha256s": "outputs/accepted/SHA256SUMS.txt",
+  "latest_reviewer_showcase": {
+    "review_date": "2026-10-10",
+    "source_notebook": "Kaggle-T4x2-Qualification-for-Higgs-TTS-3-4B-v1.0.0-Official-Executed-Acceptance.ipynb",
+    "kaggle_script_version_id": 356925390,
+    "official_project_owner_account": true,
+    "machine_transport_acceptance": "PASS",
+    "audio_activity_acceptance": "PASS",
+    "perceptual_acceptance": "PASS_HUMAN_REVIEWED",
+    "showcase_cases_reviewed": 8,
+    "synthetic_reference_voices_reviewed": 4,
+    "benchmark_listening_acceptance": "PASS_WITH_KNOWN_MIX04_LOW_RAW_LOUDNESS",
+    "evidence": "evidence/kaggle-official-account-human-review-2026-10-10.json",
+    "scope_note": "Human listening approval now applies to the fresh official project-owner Kaggle run. MIX04 raw benchmark repetitions are accepted with known low raw loudness; the broad voice-clone production claim remains pending."
+  },
+  "supersedes": [],
+  "official_kaggle_account_execution": "PASS",
+  "official_kaggle_account_machine_acceptance": "PASS",
+  "official_kaggle_account_perceptual_acceptance": "PASS_HUMAN_REVIEWED",
+  "official_kaggle_account_script_version_id": 356925390,
+  "qualification_status": {
+    "single_t4_first_tts": {
+      "status": "PASS",
+      "basis": "runtime + human listening"
+    },
+    "functional_language_control": {
+      "status": "PASS_WITH_UPDATED_ACCEPTED_VARIANTS",
+      "basis": "transport PASS plus current human listening; VI02 replaced by fixed-seed accepted variant"
+    },
+    "single_t4_production_headroom": {
+      "status": "FAIL_EXPECTED_NEGATIVE_EVIDENCE",
+      "blocking": false,
+      "reason": "1xT4 OOM/headroom failure is preserved; production target is T4x2"
+    },
+    "t4x2_stage_placement": {
+      "status": "PASS_RUNTIME_AND_CORE_PERCEPTUAL",
+      "blocking": false,
+      "reason": "runtime stage placement recovered headroom and core TTS cases now have accepted variants"
+    }
+  },
+  "official_kaggle_account_human_review_evidence": "evidence/kaggle-official-account-human-review-2026-10-10.json"
+}
