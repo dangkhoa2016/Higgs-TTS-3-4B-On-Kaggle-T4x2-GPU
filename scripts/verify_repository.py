@@ -86,6 +86,37 @@ def paired_markdown_errors():
     return errors
 
 
+def readme_errors():
+    errors = []
+    en_path = ROOT / "README.md"
+    vi_path = ROOT / "README.vi.md"
+    if not en_path.exists() or not vi_path.exists():
+        return errors
+    en = en_path.read_text(encoding="utf-8")
+    vi = vi_path.read_text(encoding="utf-8")
+    badge_tokens = [
+        "Repository Audit", "License: MIT", "Python 3.12", "PyTorch FP16",
+        "SGLang-Omni", "NVIDIA Tesla T4 x2", "Kaggle", "Original weights",
+        "Human listening", "Release state",
+    ]
+    for token in badge_tokens:
+        if token not in en or token not in vi:
+            errors.append(f"README badge/header token missing: {token}")
+    if "> 🌐 Language / Ngôn ngữ: **English** | [Tiếng Việt](README.vi.md)" not in en:
+        errors.append("README.md language switch mismatch")
+    if "> 🌐 Ngôn ngữ / Language: [English](README.md) | **Tiếng Việt**" not in vi:
+        errors.append("README.vi.md language switch mismatch")
+    if "independent engineering qualification and deployment project" not in en:
+        errors.append("README independent-project disclaimer missing")
+    if "not an official BosonAI release" not in en:
+        errors.append("README upstream-official disclaimer missing")
+    if "pre-v1.0.0" not in en or "pre-v1.0.0" not in vi:
+        errors.append("README pre-release state missing")
+    if "Release v1.0.0" in en or "Release v1.0.0" in vi:
+        errors.append("README contains unsupported v1.0.0 release claim")
+    return errors
+
+
 def audit(mode: str) -> list[str]:
     errors = []
     required = set(BASE_REQUIRED)
@@ -110,6 +141,8 @@ def audit(mode: str) -> list[str]:
     if license_path.exists() and "Copyright (c) 2026 Đăng Khoa <i.am@dangkhoa.dev>" not in license_path.read_text(encoding="utf-8"):
         errors.append("MIT author line mismatch")
     errors.extend(paired_markdown_errors())
+    if mode == "final":
+        errors.extend(readme_errors())
     return errors
 
 

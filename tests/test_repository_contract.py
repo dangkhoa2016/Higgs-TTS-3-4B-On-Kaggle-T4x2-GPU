@@ -63,3 +63,32 @@ def test_repository_audit_workflow_uses_python312_and_final_verification():
 def test_production_shell_helpers_are_executable():
     for path in (ROOT / "production").glob("*.sh"):
         assert path.stat().st_mode & 0o111, f"not executable: {path.name}"
+
+
+def test_final_readme_contract_is_truthful_and_bilingual():
+    en = (ROOT / "README.md").read_text()
+    vi = (ROOT / "README.vi.md").read_text()
+    required_badges = [
+        "Repository Audit", "License: MIT", "Python 3.12", "PyTorch FP16",
+        "SGLang-Omni", "NVIDIA Tesla T4 x2", "Kaggle", "Original weights",
+        "Human listening", "Release state",
+    ]
+    for token in required_badges:
+        assert token in en
+        assert token in vi
+    assert "> 🌐 Language / Ngôn ngữ: **English** | [Tiếng Việt](README.vi.md)" in en
+    assert "> 🌐 Ngôn ngữ / Language: [English](README.md) | **Tiếng Việt**" in vi
+    assert "independent engineering qualification and deployment project" in en
+    assert "not an official BosonAI release" in en
+    assert "pre-v1.0.0" in en and "pre-v1.0.0" in vi
+    assert "Release v1.0.0" not in en
+    assert "Release v1.0.0" not in vi
+
+
+def test_final_repository_verifier_passes_complete_tree():
+    result = subprocess.run(
+        ["python3", str(VERIFIER)], cwd=ROOT, text=True, capture_output=True
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "REPOSITORY_AUDIT=PASS" in result.stdout
+    assert "MODE=final" in result.stdout

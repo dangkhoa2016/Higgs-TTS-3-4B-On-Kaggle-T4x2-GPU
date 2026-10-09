@@ -12,7 +12,7 @@ verify-shell:
 	bash -n production/*.sh
 
 verify-repository:
-	$(PYTHON) scripts/verify_repository.py --pre-publication
+	$(PYTHON) scripts/verify_repository.py
 
 verify: test verify-json verify-shell verify-repository
 
