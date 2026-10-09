@@ -34,3 +34,21 @@ def test_serve_script_pins_stage_placement_and_engine_contract():
         assert needle in text
     assert "tensor_parallel" not in text.lower()
     assert "export LIBRARY_PATH=/usr/local/nvidia/lib64:${LIBRARY_PATH:-}" in text
+
+START = ROOT / "production" / "start-background.sh"
+RESTORE = ROOT / "production" / "restore-flashinfer-cache.sh"
+
+
+def test_start_helper_uses_canonical_serve_and_safe_runtime_paths():
+    text = START.read_text()
+    assert "serve-t4x2.sh" in text
+    assert "HIGGS_PID_FILE" in text
+    assert "HIGGS_LOG_FILE" in text
+    assert "nohup" in text
+
+
+def test_cache_restore_is_optional_when_archive_is_missing():
+    text = RESTORE.read_text()
+    assert "HIGGS_FLASHINFER_CACHE_ARCHIVE" in text
+    assert "optional" in text.lower()
+    assert "exit 0" in text
