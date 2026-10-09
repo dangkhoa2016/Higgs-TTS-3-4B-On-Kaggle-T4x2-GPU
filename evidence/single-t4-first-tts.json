@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "device": "Tesla T4 sm75",
+  "gpu_policy": "CUDA_VISIBLE_DEVICES=0; GPU1 intentionally unused",
+  "runtime": {
+    "python": "3.12.3",
+    "torch": "2.13.0+cu130",
+    "sglang": "0.5.20",
+    "sglang_omni": "0.1.7",
+    "flashinfer": "0.6.18"
+  },
+  "server": {
+    "dtype": "float16",
+    "attention_backend": "triton",
+    "sampling_backend": "pytorch",
+    "disable_cuda_graph": true,
+    "max_running_requests": 1,
+    "mem_fraction_static": 0.72
+  },
+  "first_successful_tts": {
+    "http_status": 200,
+    "elapsed_s": 12.651105,
+    "wav": "outputs/zero-shot/en-short-warm.wav",
+    "duration_s": 2.12,
+    "sample_rate_hz": 24000,
+    "channels": 1,
+    "size_bytes": 101804,
+    "sha256": "877b906410e88053b804d55e7a4f8da2aa8a0e3a8015464cc5628dd31b53f9ab"
+  },
+  "gpu_peak_mib_during_successful_request": {
+    "0": 14471,
+    "1": 0
+  },
+  "cold_start_issue": {
+    "first_request_http_status": 500,
+    "root_cause": "FlashInfer JIT link could not find -lcuda",
+    "fix": "export LIBRARY_PATH=/usr/local/nvidia/lib64:${LIBRARY_PATH:-}",
+    "verification": "manual relink passed; norm.so and sampling.so built"
+  },
+  "cold_retry_note": "A retry timed out at 120s while FlashInfer sampling JIT continued; after JIT cache completed, same request returned HTTP 200.",
+  "validation_scope": "3-single-t4-load-and-first-tts"
+}

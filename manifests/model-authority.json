@@ -1,0 +1,55 @@
+{
+  "kaggle_model_id": "dangkhoa2016/bosonai-higgs-tts-3-4b",
+  "variation": "transformers/default",
+  "version": "1",
+  "resolved_path": "/kaggle/input/models/dangkhoa2016/bosonai-higgs-tts-3-4b/transformers/default/1",
+  "total_bytes": 9321521435,
+  "critical_files": {
+    "config.json": {
+      "exists": true,
+      "bytes": 2755
+    },
+    "tokenizer_config.json": {
+      "exists": true,
+      "bytes": 1937
+    },
+    "tokenizer.json": {
+      "exists": true,
+      "bytes": 11433924
+    },
+    "chat_template.jinja": {
+      "exists": true,
+      "bytes": 2427
+    },
+    "model.safetensors.index.json": {
+      "exists": true,
+      "bytes": 90103
+    },
+    "LICENSE": {
+      "exists": true,
+      "bytes": 32184
+    },
+    "NOTICE": {
+      "exists": true,
+      "bytes": 149
+    },
+    "README.md": {
+      "exists": true,
+      "bytes": 45840
+    },
+    "PROMPTING.md": {
+      "exists": true,
+      "bytes": 3033
+    },
+    "model.safetensors": {
+      "exists": true,
+      "bytes": 9309834930
+    }
+  },
+  "safetensors_index": {
+    "tensor_keys": 927,
+    "referenced_files": [
+      "model.safetensors"
+    ]
+  }
+}

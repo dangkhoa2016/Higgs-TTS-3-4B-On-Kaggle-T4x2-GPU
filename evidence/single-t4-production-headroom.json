@@ -1,0 +1,37 @@
+{
+  "status": "FAIL_PRODUCTION_HEADROOM",
+  "functional_status": "PASS_SINGLE_T4_FUNCTIONAL",
+  "device": "Tesla T4 sm75",
+  "gpu_policy": "GPU0 only; GPU1 intentionally unused during single-T4 headroom qualification",
+  "baseline_after_voice_clone": {
+    "gpu0_used_mib": 14847,
+    "gpu0_free_mib": 65,
+    "gpu1_used_mib": 0,
+    "gpu1_free_mib": 14912
+  },
+  "mixed_probe_1": {
+    "id": "mix01",
+    "http_status": 200,
+    "elapsed_s": 5.850178,
+    "duration_s": 5.24,
+    "gpu0_peak_used_mib": 14847,
+    "sha256": "d93675b3cbd91c20a29fa359e57504194e1b0f63c3e0caadb4c0755117dd9496"
+  },
+  "mixed_probe_2": {
+    "id": "mix02",
+    "http_status": 500,
+    "failure": "CUDA out of memory",
+    "requested_allocation_mib": 46,
+    "gpu0_free_mib_at_failure": 34.75,
+    "gpu0_used_mib_after_failure": 14877,
+    "gpu0_free_mib_after_failure": 35,
+    "server_remained_healthy": true
+  },
+  "root_cause": "Single-T4 pipeline has insufficient residual VRAM for an eager Higgs codec decode allocation on some utterance lengths after full warmup/reference use.",
+  "decision": "Do not continue stress testing on 1xT4. Proceed to T4x2 stage placement, keeping the TTS engine on GPU0 and moving audio encoder/vocoder to GPU1 before considering tensor parallelism.",
+  "evidence_files": [
+    "evidence/functional-language-control-validation.json",
+    "evidence/single-t4-production-headroom.json"
+  ],
+  "validation_scope": "5-single-t4-memory-headroom"
+}
