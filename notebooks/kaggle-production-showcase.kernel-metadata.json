@@ -1,0 +1,17 @@
+{
+  "id": "dangkhoa2016/higgs-tts-3-4b-kaggle-t4x2-production-showcase",
+  "title": "Higgs TTS 3 4B Kaggle T4x2 Production Showcase",
+  "code_file": "kaggle-production-showcase.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "machine_shape": "NvidiaTeslaT4",
+  "keywords": ["higgs-tts", "text-to-speech", "t4x2", "production", "reproducibility"],
+  "dataset_sources": [],
+  "competition_sources": [],
+  "kernel_sources": [],
+  "model_sources": ["dangkhoa2016/bosonai-higgs-tts-3-4b/transformers/default/1"]
+}
