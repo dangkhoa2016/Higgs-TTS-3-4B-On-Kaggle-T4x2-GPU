@@ -1,0 +1,43 @@
+# Python / virtual environments
+.venv/
+.venv*/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Model weights and large ML artifacts
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.gguf
+
+# Generated audio / caches / archives
+*.wav
+*.flac
+*.mp3
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+.cache/
+
+# Credentials and local secrets
+.env
+.env.*
+*_token
+gh_token
+
+# Runtime / Kaggle transient state
+*.log
+*.pid
+logs/
+
+# Vendored or upstream checkouts
+upstream-*/
+audit/upstream-*/
+
+# Internal agent execution artifacts
+.superpowers/
+docs/superpowers/
