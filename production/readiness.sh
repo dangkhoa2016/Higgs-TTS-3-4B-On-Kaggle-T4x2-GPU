@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
-ROOT=${ROOT:-/kaggle/working/Higgs-TTS-3-4B-On-Kaggle-T4x2-GPU-rewrite}
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+ROOT=${ROOT:-$(cd "$SCRIPT_DIR/.." && pwd)}
 source "$ROOT/production/runtime.env"
 NSMI=$(command -v nvidia-smi || true); [[ -n "$NSMI" ]] || NSMI=/opt/bin/nvidia-smi
 [[ -x "$NSMI" ]] || { echo 'FAIL: nvidia-smi missing'; exit 2; }

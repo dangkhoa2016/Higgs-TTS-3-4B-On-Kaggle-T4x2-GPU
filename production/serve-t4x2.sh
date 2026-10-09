@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
-ROOT=${ROOT:-/kaggle/working/higgs-tts-3-t4x2}
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+ROOT=${ROOT:-$(cd "$SCRIPT_DIR/.." && pwd)}
 ENV_FILE=${HIGGS_ENV_FILE:-$ROOT/production/runtime.env}
 [[ -f "$ENV_FILE" ]] && set -a && source "$ENV_FILE" && set +a
 VENV=${HIGGS_VENV:-$ROOT/.venv312}
