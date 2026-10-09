@@ -59,3 +59,22 @@ def test_historical_perceptual_caveats_are_preserved():
     assert "VI02 loses initial Hệ" in phase4["perceptual_review_2026_10_08"]["vietnamese_baseline"]
     assert "MIX03 near-silent" in phase4["perceptual_review_2026_10_08"]["mixed_language"]
     assert phase6["perceptual_review_2026_10_08"]["voice_clone"] == "INTELLIGIBLE_BUT_REFERENCE_TOO_LOW_PITCH"
+
+
+def test_root_cause_classification_and_uncertainty_are_exact():
+    audit = load("evidence/root-cause-audit-2026-10-09.json")
+    conclusion = audit["conclusion"]
+    assert conclusion["root_cause_class"] == "zero-shot AR acoustic-generation/bootstrap instability before codec decode"
+    assert conclusion["confidence"] == "high for layer localization; exact learned-model internal mechanism remains unproven"
+
+
+def test_mix04_final_acceptance_and_reference_conditioning_policy():
+    mix04 = load("evidence/mix04-final-approved.json")
+    review = load("evidence/root-cause-human-review-2026-10-09.json")
+    matrix = load("evidence/final-acceptance-matrix-2026-10-09.json")
+    assert mix04["status"] == "HUMAN_APPROVED"
+    assert mix04["seed"] == 12346
+    assert mix04["temperature"] == 0.65
+    assert review["overall"]["reference_conditioned"] == "CONTENT_ACCEPTABLE_BUT_ACCENT_NOT_PRODUCTION_READY"
+    assert matrix["readiness"]["reference_conditioned_default"] == "REJECTED_FOR_PRODUCTION_WITH_CURRENT_SLT_REFERENCE"
+    assert matrix["readiness"]["voice_clone_production_claim"] == "PENDING_HUMAN_ACCEPTANCE"

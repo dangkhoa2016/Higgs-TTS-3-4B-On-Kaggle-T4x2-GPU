@@ -1,0 +1,140 @@
+{
+  "audit": "Higgs TTS 3 zero-shot onset root-cause audit",
+  "date": "2026-10-09",
+  "model_path": "/kaggle/input/models/dangkhoa2016/bosonai-higgs-tts-3-4b/transformers/default/1",
+  "runtime": {
+    "sglang_omni": "0.1.7",
+    "torch": "2.13.0+cu130",
+    "layout": {
+      "gpu0": "tts_engine",
+      "gpu1": [
+        "audio_encoder",
+        "vocoder"
+      ]
+    }
+  },
+  "ruled_out": {
+    "browser_or_wav_cache": "different WAV hashes/files and independent generation evidence",
+    "tokenizer_text_loss": "exact encode/decode round-trip preserves Hệ, Hôm, The and MIX03 text",
+    "delay_pattern_off_by_one": "apply_delay_pattern -> reverse_delay_pattern synthetic round-trip exact",
+    "codec_or_http_assembly": "independent raw-code re-decode has identical sample counts and correlation >=0.9999998 with API WAV",
+    "max_new_tokens_truncation": "fixed-seed outputs terminate at 127-223 raw frames, below max_new_tokens=384",
+    "concurrency": "max_running_requests=1 and audit requests executed sequentially"
+  },
+  "fixed_seed_zero_shot": {
+    "seed": 12345,
+    "temperature": 0.8,
+    "top_k": 50,
+    "max_new_tokens": 384,
+    "cases": {
+      "en01": {
+        "raw_shape": [
+          127,
+          8
+        ],
+        "duration_s": 5.08,
+        "rms_dbfs": -23.0,
+        "first_active_s": 0.1,
+        "codec_corr": 0.999999958
+      },
+      "vi02": {
+        "raw_shape": [
+          138,
+          8
+        ],
+        "duration_s": 5.52,
+        "rms_dbfs": -19.72,
+        "first_active_s": 0.0,
+        "codec_corr": 0.999999981
+      },
+      "mix02": {
+        "raw_shape": [
+          164,
+          8
+        ],
+        "duration_s": 6.56,
+        "rms_dbfs": -20.51,
+        "first_active_s": 0.1,
+        "codec_corr": 0.999999978
+      },
+      "mix03": {
+        "raw_shape": [
+          140,
+          8
+        ],
+        "duration_s": 5.6,
+        "rms_dbfs": -14.82,
+        "first_active_s": 0.09,
+        "codec_corr": 0.999999994
+      },
+      "mix04": {
+        "raw_shape": [
+          223,
+          8
+        ],
+        "duration_s": 8.92,
+        "rms_dbfs": -29.88,
+        "first_active_s": 0.06,
+        "codec_corr": 0.999999828
+      }
+    }
+  },
+  "original_failure_signals": {
+    "vi02": {
+      "first_active_s": 0.0,
+      "first_sample": 0.13474
+    },
+    "mix02": {
+      "first_active_s": 0.0,
+      "first_sample": 0.21774
+    },
+    "mix03": {
+      "first_active_s": null,
+      "rms_dbfs": -64.81
+    },
+    "mix04": {
+      "first_active_s": 0.0,
+      "first_sample": -0.00809
+    }
+  },
+  "synthetic_reference_conditioned": {
+    "reference": "tests/audio/ref_en_slt.wav",
+    "reference_kind": "synthetic",
+    "seed": 12345,
+    "temperature": 0.8,
+    "top_k": 50,
+    "cases": {
+      "vi02": {
+        "duration_s": 5.04,
+        "first_active_s": 0.1,
+        "rms_0_100ms_dbfs": -51.32,
+        "rms_dbfs": -15.44
+      },
+      "mix02": {
+        "duration_s": 5.64,
+        "first_active_s": 0.13,
+        "rms_0_100ms_dbfs": -50.49,
+        "rms_dbfs": -14.19
+      },
+      "mix03": {
+        "duration_s": 5.36,
+        "first_active_s": 0.12,
+        "rms_0_100ms_dbfs": -45.45,
+        "rms_dbfs": -14.56
+      },
+      "mix04": {
+        "duration_s": 5.08,
+        "first_active_s": 0.08,
+        "rms_0_100ms_dbfs": -27.8,
+        "rms_dbfs": -15.79
+      }
+    }
+  },
+  "conclusion": {
+    "root_cause_class": "zero-shot AR acoustic-generation/bootstrap instability before codec decode",
+    "confidence": "high for layer localization; exact learned-model internal mechanism remains unproven",
+    "stochastic_evidence": "MIX03 changes from near-silent unseeded output to normal-signal fixed-seed output; MIX02/MIX04 onset changes with seed",
+    "text_specific_evidence": "VI02 remains immediate-onset in fixed-seed zero-shot but gains ~100 ms natural onset when reference acoustic context is supplied",
+    "production_candidate": "use deterministic synthetic-reference conditioning for stable voice/acoustic context, while retaining zero-shot failures as transparent evidence; perceptual acceptance still requires human listening"
+  }
+}
