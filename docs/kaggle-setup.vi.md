@@ -27,7 +27,9 @@ Môi trường đã được kiểm định ghi nhận Python 3.12.3, PyTorch 2.
 Trước khi launch, bảo đảm CUDA driver library path khả dụng:
 
 ```bash
-export LIBRARY_PATH=/usr/local/nvidia/lib64:${LIBRARY_PATH:-}
+export LD_LIBRARY_PATH=/usr/local/nvidia/lib64:${LD_LIBRARY_PATH:-}
+export LD_LIBRARY_PATH=/usr/local/nvidia/lib64:${LD_LIBRARY_PATH:-}
+LIBRARY_PATH=/usr/local/nvidia/lib64:${LIBRARY_PATH:-}
 ```
 
 ## Khởi chạy

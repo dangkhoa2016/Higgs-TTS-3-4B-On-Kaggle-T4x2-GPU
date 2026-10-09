@@ -16,6 +16,7 @@ This directory documents the independently engineered Kaggle T4x2 qualification 
 - [Troubleshooting](troubleshooting.md) — FlashInfer, memory, readiness, and output protection.
 - [Known limitations](known-limitations.md) — scoped claims and unresolved perceptual/reproducibility caveats.
 - [Development history](development-history.md) — evidence-backed engineering chronology.
+- [Kaggle production showcase](../notebooks/README.md) — direct GitHub-to-Kaggle UI import and fresh-session acceptance workflow.
 
 ## Authority
 

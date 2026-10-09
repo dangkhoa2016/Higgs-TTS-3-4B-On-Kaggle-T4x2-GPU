@@ -26,6 +26,7 @@ Moving the audio encoder and vocoder to GPU1 reduced steady GPU0 pressure while 
 The qualified TTS engine uses FP16, CUDA graphs disabled, one running request, `mem_fraction_static=0.72`, PyTorch sampling, and Triton attention. The server exports:
 
 ```bash
+LD_LIBRARY_PATH=/usr/local/nvidia/lib64:${LD_LIBRARY_PATH:-}
 LIBRARY_PATH=/usr/local/nvidia/lib64:${LIBRARY_PATH:-}
 ```
 

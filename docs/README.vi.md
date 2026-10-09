@@ -16,6 +16,7 @@ Thư mục này mô tả quá trình kiểm định kỹ thuật độc lập Hi
 - [Khắc phục sự cố](troubleshooting.vi.md) — FlashInfer, memory, readiness và bảo vệ output.
 - [Giới hạn đã biết](known-limitations.vi.md) — phạm vi claim và các caveat còn tồn tại.
 - [Lịch sử phát triển](development-history.vi.md) — chronology kỹ thuật dựa trên evidence.
+- [Kaggle production showcase](../notebooks/README.vi.md) — import trực tiếp từ GitHub vào Kaggle UI và fresh-session acceptance workflow.
 
 ## Authority
 

@@ -27,7 +27,9 @@ The qualified environment recorded Python 3.12.3, PyTorch 2.13.0+cu130, SGLang 0
 Before launch, make sure the CUDA driver library path is available:
 
 ```bash
-export LIBRARY_PATH=/usr/local/nvidia/lib64:${LIBRARY_PATH:-}
+export LD_LIBRARY_PATH=/usr/local/nvidia/lib64:${LD_LIBRARY_PATH:-}
+export LD_LIBRARY_PATH=/usr/local/nvidia/lib64:${LD_LIBRARY_PATH:-}
+LIBRARY_PATH=/usr/local/nvidia/lib64:${LIBRARY_PATH:-}
 ```
 
 ## Launch

@@ -26,6 +26,7 @@ Việc chuyển audio encoder và vocoder sang GPU1 giúp giảm áp lực bộ 
 TTS engine đã được kiểm định dùng FP16, tắt CUDA graph, một request đang chạy, `mem_fraction_static=0.72`, PyTorch sampling và Triton attention. Server export:
 
 ```bash
+LD_LIBRARY_PATH=/usr/local/nvidia/lib64:${LD_LIBRARY_PATH:-}
 LIBRARY_PATH=/usr/local/nvidia/lib64:${LIBRARY_PATH:-}
 ```
 
