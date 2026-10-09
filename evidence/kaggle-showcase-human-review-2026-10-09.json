@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "source_notebook": "new-setup-kaggle-ssh-v4 (2).ipynb",
+  "source_notebook_sha256": "61b5b14b6eda35b43d3b7dcaccfce4eba4f132f83486f4e0d211165ce0307699",
+  "release_commit_executed": "87fb6957885374572d45d5341846c64800c4c6c4",
+  "machine_transport": "PASS_8_OF_8_HTTP200",
+  "overall_showcase_acceptance": "FAIL_HUMAN_AND_AUDIO_ACTIVITY",
+  "human_review": {
+    "NARR01": {
+      "finding": "INITIAL_WORD_OMISSION_AT",
+      "input_prefix": "At the end of a long engineering session",
+      "observed": "The initial word 'At' was not heard.",
+      "classification": "HUMAN_TEXT_COVERAGE_FAILURE"
+    },
+    "MIX01": {
+      "finding": "ALPHANUMERIC_TOKEN_X2_NOT_VERBALIZED",
+      "input_fragment": "Kaggle T4 x2",
+      "observed": "The token 'x2' was not verbalized.",
+      "classification": "HUMAN_TEXT_COVERAGE_FAILURE"
+    },
+    "VI01": {
+      "finding": "SPEECH_STOPS_AFTER_FIRST_SENTENCE_WITH_LONG_SILENT_TAIL",
+      "observed": "Speech was heard only through the first sentence; the player continued while the remainder was silent.",
+      "classification": "HUMAN_AND_WAVEFORM_ACTIVITY_FAILURE"
+    }
+  },
+  "waveform_method": {
+    "window_s": 0.25,
+    "normalized_rms_threshold": 0.005,
+    "notes": "Computed from the WAV bytes embedded in the executed notebook. This gate detects sustained low-energy regions and does not perform ASR or prove text coverage."
+  },
+  "waveform_activity": {
+    "EN01": {"sha256":"1b1ed7d4331493135f1e5f3c53bc4441d74cb96556500a6e3f041fbdb2c7f50e","duration_s":25.28,"active_audio_ratio":0.9215686274509803,"longest_near_silence_s":0.75,"trailing_near_silence_s":0.75},
+    "VI01": {"sha256":"fdad5204ef03b517f3a679f71eb24d94a9eeaf6ba0880318e71fa86ac9fcc32b","duration_s":32.24,"active_audio_ratio":0.18604651162790697,"longest_near_silence_s":26.0,"trailing_near_silence_s":26.0},
+    "MIX01": {"sha256":"14996ea85f3ee2b6a80a7a6d6f21243a4df2906021f36c5c14221130c1bdc49c","duration_s":22.4,"active_audio_ratio":0.9444444444444444,"longest_near_silence_s":0.25,"trailing_near_silence_s":0.25},
+    "ONSET01": {"sha256":"a7db085a5c9f12c2fdee8922554f24e61f9d8ce948f6424a3d53427308c226a1","duration_s":17.2,"active_audio_ratio":0.927536231884058,"longest_near_silence_s":0.5,"trailing_near_silence_s":0.25},
+    "EN02": {"sha256":"9bdde92018a10f7fba7862ad8897f89ad0409d14d5ef1a4c3b85649c64a58af6","duration_s":28.24,"active_audio_ratio":0.9203539823008849,"longest_near_silence_s":0.5,"trailing_near_silence_s":0.25},
+    "VI02": {"sha256":"7f31abeaa7a0204a23730cc77b2d1cffc06bcc2b80536f536053994440d7104a","duration_s":23.8,"active_audio_ratio":0.9166666666666666,"longest_near_silence_s":0.25,"trailing_near_silence_s":0.25},
+    "MIX02": {"sha256":"2d0c2d61ff49064d419d46b7c22560ff5936199afe92312ff3c933923a4b5a3a","duration_s":25.8,"active_audio_ratio":0.9230769230769231,"longest_near_silence_s":0.5,"trailing_near_silence_s":0.25},
+    "NARR01": {"sha256":"abadb9ea3a84b17fd585104ee66f8c5473234ba1a46880935b72e8f49ad14fe4","duration_s":36.68,"active_audio_ratio":0.8979591836734694,"longest_near_silence_s":0.5,"trailing_near_silence_s":0.5}
+  },
+  "remediation": {
+    "VI01": "Shorten the zero-shot Vietnamese baseline to a moderate-length sample and require waveform activity gates.",
+    "MIX01": "Normalize spoken 'T4 x2' to 'hai GPU T4' while preserving T4 x2 in technical metadata.",
+    "NARR01": "Change the opening from 'At the end...' to 'This story begins...' while preserving the prior failure as evidence."
+  }
+}
