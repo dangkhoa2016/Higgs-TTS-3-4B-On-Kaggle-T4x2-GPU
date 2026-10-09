@@ -1,0 +1,9 @@
+{
+  "http_status": 200,
+  "sample_rate": 24000,
+  "channels": 1,
+  "duration_s": 5.08,
+  "bytes": 243884,
+  "sha256": "6f6a7de305895a6b2addc5005513c471d8b2bbdff227dbc4971051cee2a97ed6",
+  "path": "/kaggle/working/higgs-tts-3-t4x2/outputs/production-smoke.wav"
+}
