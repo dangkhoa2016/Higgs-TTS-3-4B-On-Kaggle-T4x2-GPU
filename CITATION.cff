@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this engineering qualification repository, please cite it using the metadata below."
+title: "Higgs TTS 3 4B on Kaggle T4x2 GPU"
+type: software
+authors:
+  - family-names: "Khoa"
+    given-names: "Đăng"
+    email: "i.am@dangkhoa.dev"
+repository-code: "https://github.com/dangkhoa2016/Higgs-TTS-3-4B-On-Kaggle-T4x2-GPU"
+license: MIT
+abstract: >-
+  Independent engineering qualification, reproducibility evidence, and
+  production packaging for running BosonAI Higgs TTS 3 4B with original
+  weights on Kaggle NVIDIA Tesla T4 x2 GPUs.
