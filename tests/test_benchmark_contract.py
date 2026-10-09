@@ -40,3 +40,29 @@ def test_canonical_authority_requires_second_explicit_override():
     canonical = ROOT / "benchmarks" / "t4x2-official-2026-10-09"
     with pytest.raises(SystemExit):
         module.prepare_output_dir(canonical, allow_overwrite=True, allow_authority_overwrite=False)
+
+
+def test_summary_preserves_official_metric_schema():
+    module = load_harness()
+    rows = [
+        {
+            "case": "en01", "http_status": 200, "wall_s": 2.0, "duration_s": 1.0,
+            "rtf": 2.0, "audio_per_wall": 0.5, "sha256": "a",
+            "gpu_peak": {0: {"used_mib": 100}, 1: {"used_mib": 50}},
+        },
+        {
+            "case": "en01", "http_status": 200, "wall_s": 3.0, "duration_s": 2.0,
+            "rtf": 1.5, "audio_per_wall": 2.0 / 3.0, "sha256": "a",
+            "gpu_peak": {0: {"used_mib": 120}, 1: {"used_mib": 60}},
+        },
+    ]
+    summary = module.summarize(rows)
+    overall = summary["overall"]
+    assert "latency_p95_s" in overall
+    assert "audio_per_wall_mean" in overall
+    assert "all_cases_hash_reproducible" in overall
+    assert overall["all_cases_hash_reproducible"] is True
+    assert overall["aggregate_rtf"] == overall["aggregate_wall_s"] / overall["aggregate_audio_s"]
+    case = summary["case_summary"]["en01"]
+    assert "latency_min_s" in case and "latency_max_s" in case
+    assert "audio_per_wall_mean" in case

@@ -121,6 +121,8 @@ def request_case(out_dir: Path, case_id: str, text: str, seed: int, temp: float,
 
 def summarize(rows):
     ok = [row for row in rows if row.get("http_status") == 200]
+    if not ok:
+        return {"status": "PARTIAL", "requests_total": len(rows), "requests_http200": 0, "cases": len(CASES), "repetitions": REPETITIONS, "overall": {}, "case_summary": {}}
     by_case = {}
     for row in ok:
         by_case.setdefault(row["case"], []).append(row)
@@ -131,26 +133,44 @@ def summarize(rows):
             "n": len(values),
             "latency_mean_s": statistics.mean(row["wall_s"] for row in values),
             "latency_median_s": statistics.median(row["wall_s"] for row in values),
+            "latency_min_s": min(row["wall_s"] for row in values),
+            "latency_max_s": max(row["wall_s"] for row in values),
             "duration_mean_s": statistics.mean(row["duration_s"] for row in values),
             "rtf_mean": statistics.mean(row["rtf"] for row in values),
+            "audio_per_wall_mean": statistics.mean(row["audio_per_wall"] for row in values),
             "gpu0_peak_used_mib": max(row["gpu_peak"][0]["used_mib"] for row in values),
             "gpu1_peak_used_mib": max(row["gpu_peak"][1]["used_mib"] for row in values),
             "hash_reproducible": len(set(hashes)) == 1,
             "hashes": hashes,
         }
+    aggregate_audio = sum(row["duration_s"] for row in ok)
+    aggregate_wall = sum(row["wall_s"] for row in ok)
+    sorted_latency = sorted(row["wall_s"] for row in ok)
+    overall = {
+        "latency_mean_s": statistics.mean(row["wall_s"] for row in ok),
+        "latency_median_s": statistics.median(row["wall_s"] for row in ok),
+        "latency_p95_s": sorted_latency[max(0, int(len(sorted_latency) * 0.95) - 1)],
+        "rtf_mean": statistics.mean(row["rtf"] for row in ok),
+        "audio_per_wall_mean": statistics.mean(row["audio_per_wall"] for row in ok),
+        "gpu0_peak_used_mib": max(row["gpu_peak"][0]["used_mib"] for row in ok),
+        "gpu1_peak_used_mib": max(row["gpu_peak"][1]["used_mib"] for row in ok),
+        "all_cases_hash_reproducible": all(value["hash_reproducible"] for value in case_summary.values()),
+        "aggregate_audio_s": aggregate_audio,
+        "aggregate_wall_s": aggregate_wall,
+        "aggregate_rtf": aggregate_wall / aggregate_audio,
+    }
     return {
         "status": "PASS" if len(ok) == len(rows) else "PARTIAL",
-        "requests_total": len(rows), "requests_http200": len(ok), "cases": len(CASES), "repetitions": REPETITIONS,
-        "overall": {
-            "latency_mean_s": statistics.mean(row["wall_s"] for row in ok),
-            "latency_median_s": statistics.median(row["wall_s"] for row in ok),
-            "rtf_mean": statistics.mean(row["rtf"] for row in ok),
-            "gpu0_peak_used_mib": max(row["gpu_peak"][0]["used_mib"] for row in ok),
-            "gpu1_peak_used_mib": max(row["gpu_peak"][1]["used_mib"] for row in ok),
-            "aggregate_audio_s": sum(row["duration_s"] for row in ok),
-            "aggregate_wall_s": sum(row["wall_s"] for row in ok),
-        },
+        "requests_total": len(rows),
+        "requests_http200": len(ok),
+        "cases": len(CASES),
+        "repetitions": REPETITIONS,
+        "overall": overall,
         "case_summary": case_summary,
+        "notes": [
+            "MIX04 benchmark generation uses canonical seed=12346,temp=0.65. Loudness normalization is excluded from model-generation latency and measured separately.",
+            "Other cases use fixed seed=12345,temp=0.8,top_k=50 for deterministic benchmark comparability.",
+        ],
     }
 
 
