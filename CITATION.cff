@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this engineering qualification repository, please cite it using the metadata below."
+title: "Kaggle T4x2 Qualification for Higgs TTS 3 4B"
+type: software
+authors:
+  - family-names: "Khoa"
+    given-names: "Đăng"
+    email: "i.am@dangkhoa.dev"
+repository-code: "https://github.com/dangkhoa2016/Kaggle-T4x2-Qualification-for-Higgs-TTS-3-4B"
+license: MIT
+version: 1.0.0
+date-released: 2026-10-09
+abstract: >-
+  Independent Kaggle T4x2 engineering qualification and reproducibility study.
+  Derived from Higgs TTS 3, licensed from Boson AI USA, Inc.; repository-authored
+  material is MIT-licensed while model materials retain the Boson license.
