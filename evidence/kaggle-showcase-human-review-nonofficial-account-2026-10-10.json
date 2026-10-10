@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-10-10",
+  "source_notebook": "new-setup-kaggle-ssh-v4 (3).ipynb",
+  "source_notebook_sha256": null,
+  "source_notebook_sha256_note": "The session handoff retained the executed notebook filename and results but not its full-file SHA256; no value is fabricated.",
+  "executed_release_commit": "62e1b78acb28a015c3cc03d2c3b712cf31377007",
+  "kaggle_account_scope": {
+    "official_project_owner_account": false,
+    "account_identifier": null,
+    "account_identifier_note": "The exact Kaggle account identifier for this run is not recorded in this evidence file.",
+    "official_account_acceptance": "PENDING_RERUN",
+    "scope": "This run was executed on a Kaggle account other than the project owner's official Kaggle account. It is valid runtime and human-listening evidence for this run, but it is not the official-account acceptance authority."
+  },
+  "review_authority": "explicit human listening approval supplied by the project owner in the continuation session",
+  "machine_context": {
+    "showcase_http_success": "8/8",
+    "audio_activity_pass": "8/8",
+    "synthetic_reference_previews": "4/4 machine-clean",
+    "official_benchmark_rerun_http_success": "33/33",
+    "notebook_execution_errors": 0
+  },
+  "decision": {
+    "perceptual_acceptance": "PASS_HUMAN_REVIEWED_NON_OFFICIAL_ACCOUNT_RUN",
+    "showcase_cases_approved": 8,
+    "synthetic_reference_voices_approved": 4,
+    "official_kaggle_account_acceptance": "PENDING_RERUN",
+    "project_verdict": "TECHNICALLY_ACCEPTED_FOR_THIS_RUN_AND_HUMAN_PERCEPTUALLY_ACCEPTED_FOR_THIS_RUN",
+    "voice_clone_production_claim": "PENDING_HUMAN_ACCEPTANCE"
+  },
+  "showcase_cases": {
+    "EN01": {
+      "status": "PASS_HUMAN"
+    },
+    "VI01": {
+      "status": "PASS_HUMAN"
+    },
+    "MIX01": {
+      "status": "PASS_HUMAN"
+    },
+    "ONSET01": {
+      "status": "PASS_HUMAN"
+    },
+    "EN02": {
+      "status": "PASS_HUMAN"
+    },
+    "VI02": {
+      "status": "PASS_HUMAN"
+    },
+    "MIX02": {
+      "status": "PASS_HUMAN"
+    },
+    "NARR01": {
+      "status": "PASS_HUMAN"
+    }
+  },
+  "synthetic_reference_voices": {
+    "VOICE_A": {
+      "status": "PASS_HUMAN"
+    },
+    "VOICE_B": {
+      "status": "PASS_HUMAN"
+    },
+    "VOICE_C": {
+      "status": "PASS_HUMAN"
+    },
+    "VOICE_D": {
+      "status": "PASS_HUMAN"
+    }
+  },
+  "historical_evidence_policy": {
+    "preserve_negative_run": "evidence/kaggle-showcase-human-review-2026-10-09.json",
+    "negative_run_remains_valid_historical_evidence": true,
+    "does_not_rewrite_prior_failures": true
+  },
+  "claim_boundaries": {
+    "official_account_acceptance_established": false,
+    "universal_request_level_bitwise_determinism": false,
+    "machine_activity_metrics_prove_perceptual_quality": false,
+    "synthetic_reference_preview_approval_implies_production_voice_cloning": false,
+    "exact_learned_model_root_cause_proven": false
+  }
+}

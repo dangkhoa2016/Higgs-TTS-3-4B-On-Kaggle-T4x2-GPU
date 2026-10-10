@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
-ROOT=${ROOT:-/kaggle/working/Higgs-TTS-3-4B-On-Kaggle-T4x2-GPU-rewrite}
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+ROOT=${ROOT:-$(cd "$SCRIPT_DIR/.." && pwd)}
+ENV_FILE=${HIGGS_ENV_FILE:-$ROOT/production/runtime.env}
+[[ -f "$ENV_FILE" ]] && set -a && source "$ENV_FILE" && set +a
 PIDFILE=${HIGGS_PID_FILE:-$ROOT/production/server.pid}
 LOG=${HIGGS_LOG_FILE:-${HIGGS_SERVER_LOG:-$ROOT/logs/production-t4x2-server.log}}
 PORT=${HIGGS_PORT:-8000}

@@ -1,0 +1,12 @@
+Third-Party Notices and Attribution
+
+Boson Higgs TTS 3 is licensed under the Boson Higgs TTS 3 Research and Non-Commercial License, Copyright (c) Boson AI USA, Inc. All Rights Reserved.
+
+Built with Higgs TTS 3 licensed from Boson AI USA, Inc.
+
+This repository is an independent engineering qualification and reproducibility project and is not an official Boson AI release, product, service, or endorsement.
+
+The complete Boson Higgs TTS 3 Research and Non-Commercial License Agreement is reproduced at:
+LICENSES/BOSON-HIGGS-TTS-3-RESEARCH-NON-COMMERCIAL.txt
+
+At the compliance snapshot date recorded in LICENSES/BOSON-COMPLIANCE-SNAPSHOT.md, the upstream Hugging Face model repository did not publish a separate NOTICE file. If Boson later publishes an accompanying NOTICE, downstream redistributors should preserve it in addition to this project notice.

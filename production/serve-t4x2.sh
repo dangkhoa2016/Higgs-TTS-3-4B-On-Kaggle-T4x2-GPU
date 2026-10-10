@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
-ROOT=${ROOT:-/kaggle/working/higgs-tts-3-t4x2}
+SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
+ROOT=${ROOT:-$(cd "$SCRIPT_DIR/.." && pwd)}
 ENV_FILE=${HIGGS_ENV_FILE:-$ROOT/production/runtime.env}
 [[ -f "$ENV_FILE" ]] && set -a && source "$ENV_FILE" && set +a
 VENV=${HIGGS_VENV:-$ROOT/.venv312}
@@ -9,6 +10,7 @@ MODEL=${HIGGS_MODEL_PATH:?HIGGS_MODEL_PATH is required}
 HOST=${HIGGS_HOST:-127.0.0.1}; PORT=${HIGGS_PORT:-8000}
 [[ -x "$SGLOMNI" ]] || { echo "ERROR: missing executable $SGLOMNI" >&2; exit 2; }
 [[ -f "$MODEL/model.safetensors" ]] || { echo "ERROR: model not mounted at $MODEL" >&2; exit 3; }
+export LD_LIBRARY_PATH=/usr/local/nvidia/lib64:${LD_LIBRARY_PATH:-}
 export LIBRARY_PATH=/usr/local/nvidia/lib64:${LIBRARY_PATH:-}
 exec "$SGLOMNI" serve \
   --model-path "$MODEL" \

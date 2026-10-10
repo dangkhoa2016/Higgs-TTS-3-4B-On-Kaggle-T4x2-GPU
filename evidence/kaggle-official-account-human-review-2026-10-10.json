@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-10",
+  "evidence_type": "official_project_owner_kaggle_human_listening_review",
+  "kaggle_script_version_id": 356925390,
+  "kaggle_url": "https://www.kaggle.com/code/dangkhoa2016/higgs-tts-3-4b-on-kaggle-t4-2-gpu-demo/notebook?scriptVersionId=356925390",
+  "official_project_owner_account": true,
+  "reviewer": "project owner / repository author",
+  "review_method": "manual human listening of the fresh official Kaggle output WAV files",
+  "reported_scope": {
+    "description": "Reviewer listened to all 47 WAV files produced by the fresh official Kaggle Output for scriptVersionId 356925390.",
+    "showcase_cases": [
+      "EN01",
+      "VI01",
+      "MIX01",
+      "ONSET01",
+      "EN02",
+      "VI02",
+      "MIX02",
+      "NARR01"
+    ],
+    "synthetic_reference_voices": [
+      "VOICE_A",
+      "VOICE_B",
+      "VOICE_C",
+      "VOICE_D"
+    ],
+    "official_benchmark_rerun": "reviewed as part of the output set",
+    "other_reported_perceptual_failures": [],
+    "wav_files_reviewed": 47,
+    "wav_file_breakdown": {
+      "production_smoke": 1,
+      "synthetic_reference_voices": 4,
+      "showcase_cases": 8,
+      "official_benchmark_measured": 33,
+      "official_benchmark_warmup": 1
+    }
+  },
+  "benchmark_observations": {
+    "MIX04": {
+      "classification": "ACCEPTED_WITH_KNOWN_LOW_RAW_LOUDNESS",
+      "files": [
+        "mix04-r1.wav",
+        "mix04-r2.wav",
+        "mix04-r3.wav"
+      ],
+      "human_observation": "All three raw MIX04 repetitions sound noticeably quieter than the other benchmark outputs.",
+      "interpretation": "Accepted as valid reproducible raw model output; low loudness is a known MIX04 characteristic, not treated as a generation failure.",
+      "normalization_policy": "Optional loudness normalization is separate post-processing and is excluded from model-generation benchmark latency.",
+      "reproducibility": "The fresh official rerun reports MIX04 repetitions as byte-identical within the case."
+    }
+  },
+  "decision": {
+    "official_machine_acceptance": "PASS",
+    "official_perceptual_acceptance": "PASS_HUMAN_REVIEWED",
+    "showcase_perceptual_acceptance": "PASS_HUMAN_REVIEWED",
+    "benchmark_listening_acceptance": "PASS_WITH_KNOWN_MIX04_LOW_RAW_LOUDNESS",
+    "voice_clone_production_claim": "PENDING_HUMAN_ACCEPTANCE"
+  },
+  "claim_boundary": "This human review closes perceptual acceptance for the fresh official Kaggle execution itself. It does not establish a broad production voice-cloning claim, and it preserves MIX04 low raw loudness as an explicit known observation rather than normalizing it away.",
+  "executed_notebook_release_asset": "Kaggle-T4x2-Qualification-for-Higgs-TTS-3-4B-v1.0.0-Official-Executed-Acceptance.ipynb"
+}

@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-10",
+  "evidence_type": "official_project_owner_kaggle_account_execution",
+  "kaggle": {
+    "owner": "dangkhoa2016",
+    "notebook_slug": "higgs-tts-3-4b-on-kaggle-t4-2-gpu-demo",
+    "script_version_id": 356925390,
+    "url": "https://www.kaggle.com/code/dangkhoa2016/higgs-tts-3-4b-on-kaggle-t4-2-gpu-demo?scriptVersionId=356925390",
+    "official_project_owner_account": true,
+    "published_at_utc": "2026-10-10T03:32:34.4033333Z"
+  },
+  "release": {
+    "tag": "v1.0.0",
+    "commit_observed_by_execution": "e927fe3dc52fb42213ba3ed71bf61f1ae89f8ade",
+    "provenance": "PASS",
+    "note": "This fresh Kaggle execution qualified the v1.0.0 tree before the final publication-only evidence fold-in. The release tag may subsequently move to the amended final documentation commit without changing the runtime paths exercised by this run."
+  },
+  "execution": {
+    "cells": 44,
+    "markdown_cells": 24,
+    "code_cells": 20,
+    "execution_counts": "1-20 continuous",
+    "jupyter_errors": 0,
+    "gpu_count": 2,
+    "gpu_model": "Tesla T4",
+    "model_attachment": "dangkhoa2016/bosonai-higgs-tts-3-4b/transformers/default/1",
+    "internal_phase_taxonomy_hits": 0
+  },
+  "machine_acceptance": {
+    "showcase_http_success": "8/8",
+    "small_acceptance_http_success": "8/8",
+    "audio_activity_pass": "8/8",
+    "audio_preview_ready": "PASS",
+    "official_account_execution": "PASS",
+    "official_account_machine_acceptance": "PASS",
+    "synthetic_reference_voice_success": "4/4",
+    "official_benchmark_rerun": "PASS"
+  },
+  "perceptual_acceptance": "PASS_HUMAN_REVIEWED",
+  "claim_boundary": "This record establishes official-account machine acceptance for Kaggle scriptVersionId 356925390. Human listening review of the same fresh official run is now PASS_HUMAN_REVIEWED; the broader voice-clone production claim remains pending separate human acceptance.",
+  "executed_notebook": {
+    "public_kaggle_download_url": "https://www.kaggle.com/kernels/scriptcontent/356925390/download",
+    "public_download_sha256": "b3baadb6e2af30b93f24f38308f4a28644e4d63c68cec09185f80cdcd2fe4c2e",
+    "public_download_bytes": 14803558,
+    "user_uploaded_copy_filename": "higgs-tts-3-4b-on-kaggle-t4-2-gpu-demo (1).ipynb",
+    "user_uploaded_copy_sha256": "78dbb553c475637b993d492ffe95d3d58d89ad7643902b5d5a3c29610f3c183d",
+    "user_uploaded_copy_bytes": 14803364,
+    "serialization_note": "The user-uploaded copy and the public Kaggle download are semantically equivalent executed notebooks but are not byte-identical; the public Kaggle download is the canonical downloadable authority.",
+    "release_asset_filename": "Kaggle-T4x2-Qualification-for-Higgs-TTS-3-4B-v1.0.0-Official-Executed-Acceptance.ipynb"
+  },
+  "fresh_benchmark_reproduction": {
+    "status": "PASS",
+    "requests_total": 33,
+    "requests_http200": 33,
+    "cases": 11,
+    "repetitions": 3,
+    "latency_mean_s": 6.659305980303026,
+    "latency_median_s": 5.8641523169999346,
+    "latency_p95_s": 15.240107562000048,
+    "rtf_mean": 1.063118113816039,
+    "aggregate_rtf": 1.056727723360261,
+    "aggregate_audio_s": 207.96,
+    "aggregate_wall_s": 219.75709734999987,
+    "gpu0_peak_used_mib": 10971,
+    "gpu1_peak_used_mib": 5871,
+    "all_cases_hash_reproducible": true,
+    "authority_note": "Fresh official-account reproduction evidence; the frozen 2026-10-09 benchmark remains the canonical benchmark authority."
+  },
+  "human_review_evidence": "evidence/kaggle-official-account-human-review-2026-10-10.json"
+}
